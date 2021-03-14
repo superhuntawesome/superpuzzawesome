@@ -2,9 +2,9 @@ name: Deploy to superteamawesome droplet
 on:
   release:
     types: [published]
-environment: digitalocean-deploy
 jobs:
   deploy:
+    environment: digitalocean-deploy
     name: Deploy
     runs-on: ubuntu-latest
     steps:
