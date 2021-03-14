@@ -131,13 +131,15 @@ LOGIN_URL = "/login"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = "FIXME"
-# EMAIL_HOST_USER = "FIXME"
-# EMAIL_HOST_PASSWORD = "FIXME"
-# EMAIL_PORT = FIXME
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_SUBJECT_PREFIX = "[SHA PUZZLORD] "
+EMAIL_HOST_USER = "shapuzzlord@gmail.com"
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+
+# Writes email to stdout instead of sending a real email
 # EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_SUBJECT_PREFIX = ""
 
 LOGGING = {
     "version": 1,

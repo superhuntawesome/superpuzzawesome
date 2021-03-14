@@ -3,7 +3,9 @@ from settings.base import *
 DEBUG = True
 
 EMAIL_SUBJECT_PREFIX = u"[\u2708\u2708\u2708DEVELOPMENT\u2708\u2708\u2708] "
+ALLOWED_HOSTS = [".hunt.superteamaweso.me", "127.0.0.1"]
 
+# Writes email to stdout instead of sending a real email. Comment if you want real emails in dev.
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 LOGGING = {
@@ -67,7 +69,10 @@ LOGGING = {
             "handlers": ["django"],
             "propagate": False,
         },
-        "django.utils.autoreload": {"level": "INFO", "propagate": True,},
+        "django.utils.autoreload": {
+            "level": "INFO",
+            "propagate": True,
+        },
         "puzzles": {
             "handlers": ["puzzles-console"],
             "level": "DEBUG",
