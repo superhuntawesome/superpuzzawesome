@@ -9,57 +9,70 @@
 		<link rel="stylesheet" href="{% static "css/general.css" %}">
 		<link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
 		<title>{% block title %}SuperPuzzAwesome{% endblock %}</title>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<nav id="nav-menu">
-			{% block nav %}
-			{% with request.path as current_path %}
-			<div class="nav-links">
-				{% nav_link current_path 'index' 'Home' %}
-				{% nav_link current_path 'new' 'New Puzzle' %}
-				{% nav_link current_path 'authored' 'Your Puzzles' %}
-				{% nav_link current_path 'testsolve_main' 'Testsolve' %}
-				{% nav_link current_path 'factcheck' 'Factcheck' %}
-				{% nav_link current_path 'postprod' 'Postprod' %}
-				{% nav_link current_path 'all' 'All Puzzles' %}
-				{% if perms.puzzle_editing.change_round %}
-				{% nav_link current_path 'awaiting_editor' 'Awaiting Editor' %}
-				{% nav_link current_path 'rounds' 'Rounds/Answers' %}
-				{% endif %}
-				{% nav_link current_path 'users' 'Users' %}
-				{% nav_link current_path 'tags' 'Tags' %}
-				{% nav_link current_path 'statistics' 'Statistics' %}
-				<button id="menu-button" type="button" class="menu-button">&#9776;</button>
-			</div>
-			{% endwith %}
-			<div class="nav-second">
-				<div class="nav-countdown">
-					{% countdown %}
+		<div class="content-container">
+			<nav id="nav-menu">
+				{% block nav %}
+				<a href="{% url 'index' %}"><img class="home" src="{% static 'mojo-spa.png' %}" alt="mojo"/></a>
+				{% with request.path as current_path %}
+				<div class="nav-links">
+					{% nav_link current_path 'new' 'New Puzzle' %}
+					{% nav_link current_path 'index' 'Dashboard' %}
+					{% nav_link current_path 'authored' 'Your Puzzles' %}
+					{% nav_link current_path 'testsolve_main' 'Testsolve' %}
+					{% nav_link current_path 'factcheck' 'Factcheck' %}
+					{% nav_link current_path 'postprod' 'Postprod' %}
+					{% nav_link current_path 'all' 'All Puzzles' %}
+					{% if perms.puzzle_editing.change_round %}
+					{% nav_link current_path 'awaiting_editor' 'Awaiting Editor' %}
+					{% nav_link current_path 'rounds' 'Rounds/Answers' %}
+					{% endif %}
+					{% nav_link current_path 'users' 'Users' %}
+					{% nav_link current_path 'tags' 'Tags' %}
+					{% nav_link current_path 'statistics' 'Statistics' %}
+					<button id="menu-button" type="button" class="menu-button">&#9776;</button>
 				</div>
-				<select id="theme" class="theme">
-					<option value="classic">classic</option>
-					<option value="dark">dark</option>
-					<option value="neopets">neopets</option>
-					<option value="jellybeans">jellybeans</option>
-					<option value="solarized">solarized</option>
-					<option value="flamewyrm">flamewyrm</option>
-				</select>
-				<div class="nav-login">
-				{% if request.user.is_authenticated %}
-				Logged in as <a href="{% url 'account' %}">{{ request.user.username }}</a>
-				(<a href="{% url 'logout' %}">Logout</a>)
-				{% else %}
-				<a href="{% url 'login' %}">Login</a> or
-				<a href="{% url 'register' %}">Register</a>
-				{% endif %}
+				{% endwith %}
+
+				<div class="nav-second">
+					<div class="nav-message">
+						<p>SuperPuzzAwesome<br />v1.0.0</p>
+						<p class="tiny-note">Themes and responsiveness will be back soon!</p>
+					</div>
+					<!-- <div class="nav-countdown">
+						{% countdown %}
+					</div> 
+					<select id="theme" class="theme">
+						<option value="classic">classic</option>
+						<option value="dark">dark</option>
+						<option value="neopets">neopets</option>
+						<option value="jellybeans">jellybeans</option>
+						<option value="solarized">solarized</option>
+						<option value="flamewyrm">flamewyrm</option>
+					</select> -->
+					
+					<div class="nav-login">
+					{% if request.user.is_authenticated %}
+					<div class="nav-logged-in">Logged in as 
+						<a href="{% url 'account' %}">{{ request.user.username }}</a>
+					</div>
+					<a href="{% url 'logout' %}">Logout</a>
+					{% else %}
+					<a href="{% url 'login' %}">Login</a> or
+					<a href="{% url 'register' %}">Register</a>
+					{% endif %}
+					</div>
 				</div>
-			</div>
-			{% endblock %}
-		</nav>
-		{% block outer_main %}
-		<main>
-			{% block main %}{% endblock %}
-		</main>
+				{% endblock %}
+			</nav>
+			{% block outer_main %}
+			<main>
+				{% block main %}{% endblock %}
+			</main>
+		</div>
 		{% endblock %}
 		<script type="text/javascript">
 			document.querySelectorAll(".toggle-show").forEach((node) => {
@@ -76,25 +89,27 @@
 				});
 			});
 
-			const currentTheme = localStorage.getItem("theme") || "classic";
-			document.documentElement.setAttribute('data-theme', currentTheme);
-			const themeSelect = document.getElementById("theme");
-			themeSelect.value = currentTheme;
-			themeSelect.addEventListener("change", (event) => {
-				const value = event.target.value;
-				document.documentElement.setAttribute('data-theme', value);
-				localStorage.setItem("theme", value);
-			});
+			// Themes will be back soon!
 
-			const navMenu = document.getElementById('nav-menu');
-			navMenu.classList.add('nav-menu-collapsed'); // by default but not if JS
-			document.getElementById('menu-button').addEventListener('click', (event) => {
-				if (navMenu.classList.contains('nav-menu-collapsed')) {
-					navMenu.classList.remove('nav-menu-collapsed');
-				} else {
-					navMenu.classList.add('nav-menu-collapsed');
-				}
-			});
+			// const currentTheme = localStorage.getItem("theme") || "classic";
+			// document.documentElement.setAttribute('data-theme', currentTheme);
+			// const themeSelect = document.getElementById("theme");
+			// themeSelect.value = currentTheme;
+			// themeSelect.addEventListener("change", (event) => {
+			// 	const value = event.target.value;
+			// 	document.documentElement.setAttribute('data-theme', value);
+			// 	localStorage.setItem("theme", value);
+			// });
+
+			// const navMenu = document.getElementById('nav-menu');
+			// navMenu.classList.add('nav-menu-collapsed'); // by default but not if JS
+			// document.getElementById('menu-button').addEventListener('click', (event) => {
+			// 	if (navMenu.classList.contains('nav-menu-collapsed')) {
+			// 		navMenu.classList.remove('nav-menu-collapsed');
+			// 	} else {
+			// 		navMenu.classList.add('nav-menu-collapsed');
+			// 	}
+			// });
 
 			document.querySelectorAll(".timestamp").forEach((node) => {
 				// thanks, canada
@@ -170,9 +185,9 @@
 			var links = document.links;
 
 			for (var i = 0, linksLength = links.length; i < linksLength; i++) {
-			if (links[i].hostname != window.location.hostname) {
-				links[i].target = '_blank';
-			}
+				if (links[i].hostname != window.location.hostname) {
+					links[i].target = '_blank';
+				}
 			}
 		</script>
 		<script src="{% static 'sorttable.js' %}"></script>

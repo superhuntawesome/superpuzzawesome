@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
 	<h1>Welcome to SuperPuzzAwesome!</h1>
-
-	<a href="{% url 'login' %}">Please log in.</a>
+<h2>Hello!</h2>
+	<p><a href="{% url 'login' %}">Please log in</a></p>
+	<p>Don't have a login? <a href="{% url 'register' %}">Register for an account</a></p>
 {% endblock %}

@@ -7,11 +7,6 @@
 {% endblock %}
 {% block outer_main %}
 <div class="puzzle-outer">
-	<h1 class="puzzle-title">
-		{{ puzzle.spoilery_title }}
-		<a href="{% url 'puzzle_edit' puzzle.id %}" class="edit-link">Edit</a>
-	</h1>
-
 	<div class="puzzle-inner">
 		<aside class="puzzle-side">
 			<div class="side-element">
@@ -139,6 +134,12 @@
 		</aside>
 
 		<main class="puzzle-main">
+
+	<h1 class="puzzle-title">
+		{{ puzzle.spoilery_title }}
+		<a href="{% url 'puzzle_edit' puzzle.id %}" class="edit-link">Edit</a>
+	</h1>
+
 		<div>Answers: {% with puzzle.answers.all as answers %}{% if answers %}{{ answers|join:", " }}{% else %}<span class="empty">(none)</span>{% endif %}{% endwith %}
 			(<a href="{% url 'puzzle_answers' puzzle.id %}">edit</a>)
 		</div>
