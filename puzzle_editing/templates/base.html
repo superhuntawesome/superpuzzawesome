@@ -11,55 +11,58 @@
 		<title>{% block title %}SuperPuzzAwesome{% endblock %}</title>
 	</head>
 	<body>
-		<nav id="nav-menu">
-			{% block nav %}
-			{% with request.path as current_path %}
-			<div class="nav-links">
-				{% nav_link current_path 'index' 'Home' %}
-				{% nav_link current_path 'new' 'New Puzzle' %}
-				{% nav_link current_path 'authored' 'Your Puzzles' %}
-				{% nav_link current_path 'testsolve_main' 'Testsolve' %}
-				{% nav_link current_path 'factcheck' 'Factcheck' %}
-				{% nav_link current_path 'postprod' 'Postprod' %}
-				{% nav_link current_path 'all' 'All Puzzles' %}
-				{% if perms.puzzle_editing.change_round %}
-				{% nav_link current_path 'awaiting_editor' 'Awaiting Editor' %}
-				{% nav_link current_path 'rounds' 'Rounds/Answers' %}
-				{% endif %}
-				{% nav_link current_path 'users' 'Users' %}
-				{% nav_link current_path 'tags' 'Tags' %}
-				{% nav_link current_path 'statistics' 'Statistics' %}
-				<button id="menu-button" type="button" class="menu-button">&#9776;</button>
-			</div>
-			{% endwith %}
-			<div class="nav-second">
-				<div class="nav-countdown">
-					{% countdown %}
+		<div class="content-container">
+			<nav id="nav-menu">
+				{% block nav %}
+				{% with request.path as current_path %}
+				<div class="nav-links">
+					{% nav_link current_path 'index' 'Home' %}
+					{% nav_link current_path 'new' 'New Puzzle' %}
+					{% nav_link current_path 'authored' 'Your Puzzles' %}
+					{% nav_link current_path 'testsolve_main' 'Testsolve' %}
+					{% nav_link current_path 'factcheck' 'Factcheck' %}
+					{% nav_link current_path 'postprod' 'Postprod' %}
+					{% nav_link current_path 'all' 'All Puzzles' %}
+					{% if perms.puzzle_editing.change_round %}
+					{% nav_link current_path 'awaiting_editor' 'Awaiting Editor' %}
+					{% nav_link current_path 'rounds' 'Rounds/Answers' %}
+					{% endif %}
+					{% nav_link current_path 'users' 'Users' %}
+					{% nav_link current_path 'tags' 'Tags' %}
+					{% nav_link current_path 'statistics' 'Statistics' %}
+					<button id="menu-button" type="button" class="menu-button">&#9776;</button>
 				</div>
-				<select id="theme" class="theme">
-					<option value="classic">classic</option>
-					<option value="dark">dark</option>
-					<option value="neopets">neopets</option>
-					<option value="jellybeans">jellybeans</option>
-					<option value="solarized">solarized</option>
-					<option value="flamewyrm">flamewyrm</option>
-				</select>
-				<div class="nav-login">
-				{% if request.user.is_authenticated %}
-				Logged in as <a href="{% url 'account' %}">{{ request.user.username }}</a>
-				(<a href="{% url 'logout' %}">Logout</a>)
-				{% else %}
-				<a href="{% url 'login' %}">Login</a> or
-				<a href="{% url 'register' %}">Register</a>
-				{% endif %}
+				{% endwith %}
+				<div class="nav-second">
+					<!-- <div class="nav-countdown">
+						{% countdown %}
+					</div> 
+					<select id="theme" class="theme">
+						<option value="classic">classic</option>
+						<option value="dark">dark</option>
+						<option value="neopets">neopets</option>
+						<option value="jellybeans">jellybeans</option>
+						<option value="solarized">solarized</option>
+						<option value="flamewyrm">flamewyrm</option>
+					</select>
+					-->
+					<div class="nav-login">
+					{% if request.user.is_authenticated %}
+					Logged in as <a href="{% url 'account' %}">{{ request.user.username }}</a>
+					(<a href="{% url 'logout' %}">Logout</a>)
+					{% else %}
+					<a href="{% url 'login' %}">Login</a> or
+					<a href="{% url 'register' %}">Register</a>
+					{% endif %}
+					</div>
 				</div>
-			</div>
-			{% endblock %}
-		</nav>
-		{% block outer_main %}
-		<main>
-			{% block main %}{% endblock %}
-		</main>
+				{% endblock %}
+			</nav>
+			{% block outer_main %}
+			<main>
+				{% block main %}{% endblock %}
+			</main>
+		</div>
 		{% endblock %}
 		<script type="text/javascript">
 			document.querySelectorAll(".toggle-show").forEach((node) => {
