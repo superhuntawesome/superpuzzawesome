@@ -1,0 +1,21 @@
+name: Deploy to superteamawesome droplet
+on:
+  push:
+    tags:
+      - .*
+environment: digitalocean-deploy
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands private key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.DEPLOY_IP }}
+        username: ${{ secrets.DEPLOY_USERNAME }}
+        key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+        script: |
+          cd superpuzzawesome
+          git pull
+          echo 'Successfully updated superpuzzawesome'
