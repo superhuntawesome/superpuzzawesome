@@ -14,6 +14,9 @@ When putting up PRs, please label them appropriately so that release notes can b
 - enhancement or feature: New feature or addition
 - break: Something dramatically redesigned or changed to warrant a new major version
 
+## Publishing
+To release, go to the 'Releases' page, edit the current draft, and publish it. This will instruct the droplet to pull the latest changes from master. If there are any actions that need to be taken (server restart, new settings) please flag in #sha-tech.
+
 ## First Time Setup with Virtualenv
 
 - Make sure you have `pip3` (maybe `pip`) and python 3.x.
