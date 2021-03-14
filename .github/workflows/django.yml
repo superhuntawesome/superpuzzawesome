@@ -29,5 +29,4 @@ jobs:
       run: |
         mkdir logs
         printf "SECRET_KEY=A_SECRET\nSITE_PASSWORD=A_PASSWORD" >> .env
-        cat .env
         python manage.py test
