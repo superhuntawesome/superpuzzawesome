@@ -1,3 +1,4 @@
+
 :root {
 	--bg: #fff;
 	--nav-bg: #f4f3f2;
@@ -7,8 +8,8 @@
 	--deemphasized-color: #777;
 	--correct-color: #080;
 	--error-color: #900;
-	--secondary-bg: #f2f2f2;
-	--tertiary-bg: #e2e2e2;
+	--secondary-bg: #fafafa;
+	--tertiary-bg: #ecebe9;
 	--link-color: #333333;
 	--visited-color: #333333;
 	--border-color: #aaa;
@@ -134,7 +135,7 @@
 
 /* general */
 body {
-	font-family: sans-serif;
+	font-family: 'Noto Sans', sans-serif;
 	margin: 0;
 	padding: 0;
 	color: var(--text-color);
@@ -146,16 +147,35 @@ a:link {
 a:visited {
 	color: var(--visited-color);
 }
+
 input[type="text"], input[type="password"], input[type="email"], textarea {
+	font-family: "Noto Sans";
 	background-color: var(--input-bg);
 	color: var(--text-color);
 	border: 1px solid var(--border-color);
 	border-radius: 3px;
-	padding: 2px;
+	padding: 5px;
 }
 
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 	box-shadow: 0 0 2px var(--active-shadow-color);
+}
+
+input[type="submit"], button {
+	font-family: "Noto Sans";
+	color: var(--text-color);
+	background-color: #ccc;
+	padding: 3px 10px;
+	border-radius: 4px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	margin: 5px 5px 5px 0;
+	transition: 0.2s all;
+}
+
+input[type="submit"]:hover, button:hover {
+	opacity: 0.6;
 }
 
 .small-md p:first-child { margin-top: 0; }
@@ -172,18 +192,34 @@ nav {
 	color: var(--nav-color);
 	min-height: 100vh;
 	flex: 0 0 200px;
+	position: relative;
 }
+
+img.home {
+	width: 60px;
+	padding: 30px 24px 0;
+	transition: 0.2s all;
+}
+
+img.home:hover {
+	opacity: 0.8;
+	transform: scale(1.05);
+}
+
 nav a:link {
 	color: var(--nav-link-color);
 }
+
 nav a:visited {
 	color: var(--nav-visited-color);
 }
+
 .nav-links {
 }
 
 .nav-links a {
-	padding: 9px 25px;
+	opacity: 0.7;
+	padding: 8px 34px 10px;
 	text-decoration: none;
 	display: block;
 	transition: 0.2s all;
@@ -192,6 +228,8 @@ nav a:visited {
 
 .nav-links a.new, 
 .nav-links a.selected.new {
+	padding: 9px 25px 12px;
+	opacity: 1;
 	font-size: 15px;
 	line-height: 17px;
 	border-radius: 50px;
@@ -199,28 +237,30 @@ nav a:visited {
 	color: var(--nav-bg);
 	background-color: var(--highlight-color);
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-	font-weight: 400;
 }
 
 .nav-links a.new:hover {
 	background-color: var(--highlight-color);
 	opacity: 0.8;
+	transform: scale(1.03);
 }
 
 
 .nav-links a.new::before {
 	content: "+";
-	margin-right: 10px;
-	margin-left: -12px;
 	font-size: 24px;
+	position: relative;
+	left: -10px;
+	top: 2px;
 }
 
 .nav-links a:hover {
+	opacity: 1;
 	background-color: var(--nav-bg-hover);
 }
 
 .nav-links a.selected {
-	font-weight: 600;
+	opacity: 1;
 	background-color: var(--nav-selected-background)
 }
 
@@ -240,6 +280,8 @@ nav a:visited {
 	border-width: 0;
 	background-color: var(--nav-bg-hover);
 }
+
+
 .nav-menu-collapsed .nav-links a:not(:first-child), .nav-menu-collapsed .nav-countdown, .nav-menu-collapsed .theme {
 	display: none;
 }
@@ -260,11 +302,16 @@ nav a:visited {
 	display: flex;
 	flex-direction: column;
 }
-.nav-second > div {
-	padding: 0.5em 0.75em;
-}
 .nav-login {
-	text-align: right;
+	position: fixed;
+	padding: 20px;
+	bottom: 0;
+	left: 0;
+	width: 160px;
+	background-color: var(--nav-selected-background);
+}
+.nav-logged-in {
+	margin-bottom: 10px;
 }
 .countdown {
 	color: var(--nav-deemphasized-color);
@@ -322,7 +369,7 @@ td.label-cell label {
 	font-size: 85%; opacity: 50%;
 }
 table.classic td {
-	padding: 0.5em;
+	padding:  10px 5px 10px 0;
 	border-top: 1px solid var(--border-color);
 	max-width: 30em;
 }
@@ -336,9 +383,6 @@ table.classic td {
 }
 
 /* puzzle */
-.puzzle-title {
-	padding: 0 0.5em;
-}
 .puzzle-inner {
 	padding: 0;
 	width: 100%;
