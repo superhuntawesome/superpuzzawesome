@@ -38,6 +38,10 @@
 				{% endwith %}
 
 				<div class="nav-second">
+					<div class="nav-message">
+						<p>SuperPuzzAwesome<br />v1.0.0</p>
+						<p class="tiny-note">Themes and responsiveness will be back soon!</p>
+					</div>
 					<!-- <div class="nav-countdown">
 						{% countdown %}
 					</div> 
@@ -48,8 +52,8 @@
 						<option value="jellybeans">jellybeans</option>
 						<option value="solarized">solarized</option>
 						<option value="flamewyrm">flamewyrm</option>
-					</select>
-					-->
+					</select> -->
+					
 					<div class="nav-login">
 					{% if request.user.is_authenticated %}
 					<div class="nav-logged-in">Logged in as 
@@ -85,25 +89,27 @@
 				});
 			});
 
-			const currentTheme = localStorage.getItem("theme") || "classic";
-			document.documentElement.setAttribute('data-theme', currentTheme);
-			const themeSelect = document.getElementById("theme");
-			themeSelect.value = currentTheme;
-			themeSelect.addEventListener("change", (event) => {
-				const value = event.target.value;
-				document.documentElement.setAttribute('data-theme', value);
-				localStorage.setItem("theme", value);
-			});
+			// Themes will be back soon!
 
-			const navMenu = document.getElementById('nav-menu');
-			navMenu.classList.add('nav-menu-collapsed'); // by default but not if JS
-			document.getElementById('menu-button').addEventListener('click', (event) => {
-				if (navMenu.classList.contains('nav-menu-collapsed')) {
-					navMenu.classList.remove('nav-menu-collapsed');
-				} else {
-					navMenu.classList.add('nav-menu-collapsed');
-				}
-			});
+			// const currentTheme = localStorage.getItem("theme") || "classic";
+			// document.documentElement.setAttribute('data-theme', currentTheme);
+			// const themeSelect = document.getElementById("theme");
+			// themeSelect.value = currentTheme;
+			// themeSelect.addEventListener("change", (event) => {
+			// 	const value = event.target.value;
+			// 	document.documentElement.setAttribute('data-theme', value);
+			// 	localStorage.setItem("theme", value);
+			// });
+
+			// const navMenu = document.getElementById('nav-menu');
+			// navMenu.classList.add('nav-menu-collapsed'); // by default but not if JS
+			// document.getElementById('menu-button').addEventListener('click', (event) => {
+			// 	if (navMenu.classList.contains('nav-menu-collapsed')) {
+			// 		navMenu.classList.remove('nav-menu-collapsed');
+			// 	} else {
+			// 		navMenu.classList.add('nav-menu-collapsed');
+			// 	}
+			// });
 
 			document.querySelectorAll(".timestamp").forEach((node) => {
 				// thanks, canada
@@ -179,9 +185,9 @@
 			var links = document.links;
 
 			for (var i = 0, linksLength = links.length; i < linksLength; i++) {
-			if (links[i].hostname != window.location.hostname) {
-				links[i].target = '_blank';
-			}
+				if (links[i].hostname != window.location.hostname) {
+					links[i].target = '_blank';
+				}
 			}
 		</script>
 		<script src="{% static 'sorttable.js' %}"></script>

@@ -295,38 +295,43 @@ nav a:visited {
 	}
 	.menu-button { display: none; }
 }
+
 .nav-links a:first-child {
 	font-weight: bold;
 }
+
 .nav-second {
-	display: flex;
-	flex-direction: column;
-}
-.nav-login {
 	position: fixed;
-	padding: 20px;
 	bottom: 0;
 	left: 0;
-	width: 160px;
+	width: 200px;
+}
+
+.nav-message {
+	padding: 0 20px 10px;
+	font-size: 13px;
+}
+
+.nav-message .tiny-note {
+	opacity: 0.6;
+}
+
+.nav-login {
+	padding: 20px;
 	background-color: var(--nav-selected-background);
 }
+
 .nav-logged-in {
 	margin-bottom: 10px;
 }
+
 .countdown {
 	color: var(--nav-deemphasized-color);
 	font-size: 85%;
 }
+
 .countdown .time {
 	color: var(--nav-color);
-}
-
-@media screen and (min-width: 36em) {
-	.nav-second {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-	}
 }
 
 main {
