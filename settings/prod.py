@@ -2,4 +2,4 @@ from settings.base import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["hunt.superteamaweso.me"]
+ALLOWED_HOSTS = [".hunt.superteamaweso.me"]
