@@ -35,6 +35,7 @@ When putting up PRs, please label them appropriately so that release notes can b
         ```
         SECRET_KEY=FIX_ME
         SITE_PASSWORD=FIX_ME
+        DEBUG=true
         ```
 
         - the SECRET_KEY should be a highly secure random string, which Django uses for hashes, CSRF tokens, and such
