@@ -1,8 +1,7 @@
 name: Deploy to superteamawesome droplet
 on:
-  push:
-    tags:
-      - .*
+  release:
+    types: [published]
 environment: digitalocean-deploy
 jobs:
   deploy:
