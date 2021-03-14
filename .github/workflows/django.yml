@@ -28,4 +28,5 @@ jobs:
     - name: Run Tests
       run: |
         mkdir logs
+        printf "SECRET_KEY=A_SECRET\nSITE_PASSWORD=A_PASSWORD" >> .env
         python manage.py test
