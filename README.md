@@ -72,6 +72,8 @@ activated the virtualenv first. Then add the dependency to `requirements.txt`.
  - You can always run `python manage.py --help` to get a list of subcommands
  - To create a superuser (so you can access the `/admin` page locally) run `python manage.py createsuperuser`
  - If you get a warning (red text) about making migrations run `python manage.py migrate`
+ - To start the prod server, run `python manage.py runserver --settings=settings.prod --insecure`
+   - Running with `--insecure` uses django's built in static files server, which is enough for our purposes.
 
 ## Where are things?
 
