@@ -152,19 +152,19 @@ LOGGING = {
         "django": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
-            "filename": "/srv/mhpuzzlord/logs/django.log",
+            "filename": os.getcwd() + "/logs/django.log",
             "formatter": "django",
         },
         "puzzle": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
-            "filename": "/srv/mhpuzzlord/logs/puzzle.log",
+            "filename": os.getcwd() + "/logs/puzzle.log",
             "formatter": "puzzles",
         },
         "request": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
-            "filename": "/srv/mhpuzzlord/logs/request.log",
+            "filename": os.getcwd() + "/logs/request.log",
             "formatter": "puzzles",
         },
     },
