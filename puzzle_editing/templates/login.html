@@ -19,8 +19,7 @@ Login
 	<input type="submit" value="Submit">
 	<input type="hidden" name="next" value="{{ next }}">
 </form>
+<p>Forgot your password? <a href="{% url 'reset_password' %}">Reset your password here</a></p>
 <p>Don't have a login? <a href="{% url 'register' %}">Register for an account here</a></p>
 
 {% endblock %}
-
-	

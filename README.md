@@ -48,7 +48,7 @@ To release, go to the 'Releases' page, edit the current draft, and publish it. T
 	- the hosts in `settings/staging.py` and `settings/prod.py`
 - Make sure the database schema is up to date with `python manage.py migrate`
 - Make a superuser with `python manage.py createsuperuser`
-- Install pre-commit hooks `pre-commit install` (may need to `pip3 install pre-commit` first
+- Install pre-commit hooks `pre-commit install` (may need to `pip3 install pre-commit` first)
 - Start the development server with `python manage.py runserver`
 - If you get a warning (red text) about making migrations run `python manage.py migrate`
 
