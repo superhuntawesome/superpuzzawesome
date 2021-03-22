@@ -210,10 +210,6 @@ class Misc(TestCase):
 
         for client in [ac, bc]:
             for urlname in [
-                "postprod",
-                "needs_editor",
-                "awaiting_editor",
-                "factcheck",
                 "users",
                 "users_statuses",
                 "account",

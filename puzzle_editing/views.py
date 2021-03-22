@@ -58,11 +58,16 @@ from puzzle_editing.models import UserProfile
 def get_sessions_with_joined_and_current(user):
     return TestsolveSession.objects.annotate(
         joined=Exists(
-            TestsolveParticipation.objects.filter(session=OuterRef("pk"), user=user,)
+            TestsolveParticipation.objects.filter(
+                session=OuterRef("pk"),
+                user=user,
+            )
         ),
         current=Exists(
             TestsolveParticipation.objects.filter(
-                session=OuterRef("pk"), user=user, ended=None,
+                session=OuterRef("pk"),
+                user=user,
+                ended=None,
             )
         ),
     )
@@ -94,19 +99,15 @@ def index(request):
         return render(request, "index_not_logged_in.html")
 
     blocked_on_author_puzzles = Puzzle.objects.filter(
-        authors=user, status__in=status.STATUSES_BLOCKED_ON_AUTHORS,
+        authors=user,
+        status__in=status.STATUSES_BLOCKED_ON_AUTHORS,
     )
     blocked_on_editor_puzzles = Puzzle.objects.filter(
-        editors=user, status__in=status.STATUSES_BLOCKED_ON_EDITORS,
+        editors=user,
+        status__in=status.STATUSES_BLOCKED_ON_EDITORS,
     )
     current_sessions = get_sessions_with_joined_and_current(user).filter(
         joined=True, current=True
-    )
-    factchecking = Puzzle.objects.filter(
-        status=status.NEEDS_FACTCHECK, factcheckers=user
-    )
-    postprodding = Puzzle.objects.filter(
-        status=status.NEEDS_POSTPROD, postprodders=user
     )
     inbox_puzzles = (
         user.spoiled_puzzles.exclude(status=status.DEAD)
@@ -132,9 +133,7 @@ def index(request):
             "blocked_on_author_puzzles": blocked_on_author_puzzles,
             "blocked_on_editor_puzzles": blocked_on_editor_puzzles,
             "current_sessions": current_sessions,
-            "factchecking": factchecking,
             "inbox_puzzles": inbox_puzzles,
-            "postprodding": postprodding,
         },
     )
 
@@ -194,7 +193,8 @@ class RegisterForm(forms.ModelForm):
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
             raise forms.ValidationError(
-                "The two password fields didn't match.", code="password_mismatch",
+                "The two password fields didn't match.",
+                code="password_mismatch",
             )
         return password2
 
@@ -202,7 +202,8 @@ class RegisterForm(forms.ModelForm):
         site_password = self.cleaned_data.get("site_password")
         if site_password and site_password != settings.SITE_PASSWORD:
             raise forms.ValidationError(
-                "The site password was incorrect.", code="password_mismatch",
+                "The site password was incorrect.",
+                code="password_mismatch",
             )
         return site_password
 
@@ -397,7 +398,10 @@ def authored(request):
     return render(
         request,
         "authored.html",
-        {"puzzles": puzzles, "editing_puzzles": editing_puzzles,},
+        {
+            "puzzles": puzzles,
+            "editing_puzzles": editing_puzzles,
+        },
     )
 
 
@@ -930,7 +934,11 @@ def puzzle_postprod(request, id):
     return render(
         request,
         "puzzle_postprod.html",
-        {"puzzle": puzzle, "form": form, "spoiled": spoiled,},
+        {
+            "puzzle": puzzle,
+            "form": form,
+            "spoiled": spoiled,
+        },
     )
 
 
@@ -1117,11 +1125,21 @@ def edit_comment(request, id):
 
     if request.user != comment.author:
         return render(
-            request, "edit_comment.html", {"comment": comment, "not_author": True,}
+            request,
+            "edit_comment.html",
+            {
+                "comment": comment,
+                "not_author": True,
+            },
         )
     elif comment.is_system:
         return render(
-            request, "edit_comment.html", {"comment": comment, "is_system": True,}
+            request,
+            "edit_comment.html",
+            {
+                "comment": comment,
+                "is_system": True,
+            },
         )
 
     if request.method == "POST":
@@ -1139,7 +1157,10 @@ def edit_comment(request, id):
     return render(
         request,
         "edit_comment.html",
-        {"comment": comment, "form": PuzzleCommentForm({"content": comment.content}),},
+        {
+            "comment": comment,
+            "form": PuzzleCommentForm({"content": comment.content}),
+        },
     )
 
 
@@ -1162,7 +1183,10 @@ def edit_hint(request, id):
     return render(
         request,
         "edit_hint.html",
-        {"hint": hint, "form": PuzzleHintForm(instance=hint),},
+        {
+            "hint": hint,
+            "form": PuzzleHintForm(instance=hint),
+        },
     )
 
 
@@ -1295,7 +1319,11 @@ def testsolve_finder(request):
     return render(
         request,
         "testsolve_finder.html",
-        {"puzzles": puzzles, "users": users, "missing_usernames": missing_usernames,},
+        {
+            "puzzles": puzzles,
+            "users": users,
+            "missing_usernames": missing_usernames,
+        },
     )
 
 
@@ -1347,7 +1375,9 @@ def testsolve_one(request, id):
 
         elif "do_guess" in request.POST:
             participation = get_object_or_404(
-                TestsolveParticipation, session=session, user=user,
+                TestsolveParticipation,
+                session=session,
+                user=user,
             )
             guess_form = GuessForm(request.POST)
             if guess_form.is_valid():
@@ -1359,7 +1389,10 @@ def testsolve_one(request, id):
                 )
 
                 guess_model = TestsolveGuess(
-                    session=session, user=user, guess=guess, correct=correct,
+                    session=session,
+                    user=user,
+                    guess=guess,
+                    correct=correct,
                 )
                 guess_model.save()
 
@@ -1379,7 +1412,8 @@ def testsolve_one(request, id):
                     session.save()
                 else:
                     message = "{} answer guess: {}".format(
-                        "Correct" if correct else "Incorrect", guess,
+                        "Correct" if correct else "Incorrect",
+                        guess,
                     )
                     add_comment(
                         request=request,
@@ -1618,71 +1652,6 @@ def testsolve_finish(request, id):
     return render(request, "testsolve_finish.html", context)
 
 
-@login_required
-def postprod(request):
-    postprodding = Puzzle.objects.filter(
-        status=status.NEEDS_POSTPROD, postprodders=request.user,
-    )
-    needs_postprod = Puzzle.objects.annotate(
-        has_postprodder=Exists(User.objects.filter(postprodding_puzzles=OuterRef("pk")))
-    ).filter(status=status.NEEDS_POSTPROD, has_postprodder=False)
-
-    context = {
-        "postprodding": postprodding,
-        "needs_postprod": needs_postprod,
-    }
-    return render(request, "postprod.html", context)
-
-
-@login_required
-def factcheck(request):
-    factchecking = Puzzle.objects.filter(
-        (Q(status=status.NEEDS_FACTCHECK) | Q(status=status.NEEDS_COPY_EDITS))
-        & Q(factcheckers=request.user)
-    )
-    needs_factcheck = Puzzle.objects.annotate(
-        has_factchecker=Exists(User.objects.filter(factchecking_puzzles=OuterRef("pk")))
-    ).filter(status=status.NEEDS_FACTCHECK, has_factchecker=False)
-
-    needs_copyedit = Puzzle.objects.annotate(
-        has_factchecker=Exists(User.objects.filter(factchecking_puzzles=OuterRef("pk")))
-    ).filter(status=status.NEEDS_COPY_EDITS, has_factchecker=False)
-
-    needs_copyedit_all = Puzzle.objects.filter(status=status.NEEDS_COPY_EDITS)
-
-    context = {
-        "factchecking": factchecking,
-        "needs_factchecking": needs_factcheck,
-        "needs_copyediting": needs_copyedit,
-        "needs_copyediting_all": needs_copyedit_all,
-    }
-    return render(request, "factcheck.html", context)
-
-
-@login_required
-def awaiting_editor(request):
-    return render(
-        request,
-        "awaiting_editor.html",
-        {
-            "puzzles": Puzzle.objects.filter(status=status.AWAITING_EDITOR)
-            | Puzzle.objects.filter(
-                tags__name="edit me"
-            )  # TODO: remove this when we've moved to the new system
-        },
-    )
-
-
-@login_required
-def needs_editor(request):
-    needs_editors = Puzzle.objects.annotate(
-        remaining_des=(F("needed_editors") - Count("editors"))
-    ).filter(remaining_des__gt=0)
-
-    context = {"needs_editors": needs_editors}
-    return render(request, "needs_editor.html", context)
-
-
 class AnswerForm(forms.ModelForm):
     def __init__(self, round, *args, **kwargs):
         super(AnswerForm, self).__init__(*args, **kwargs)
@@ -1753,7 +1722,12 @@ def rounds(request):
     ]
 
     return render(
-        request, "rounds.html", {"rounds": rounds, "new_round_form": RoundForm(),}
+        request,
+        "rounds.html",
+        {
+            "rounds": rounds,
+            "new_round_form": RoundForm(),
+        },
     )
 
 
@@ -1815,7 +1789,13 @@ def bulk_add_answers(request, id):
 
         return redirect(urls.reverse("bulk_add_answers", args=[id]))
 
-    return render(request, "bulk_add_answers.html", {"round": round,})
+    return render(
+        request,
+        "bulk_add_answers.html",
+        {
+            "round": round,
+        },
+    )
 
 
 @login_required
@@ -1939,7 +1919,14 @@ def single_tag(request, id):
         label = "1 puzzle"
     else:
         label = "{} puzzles".format(count)
-    return render(request, "single_tag.html", {"tag": tag, "count_label": label,})
+    return render(
+        request,
+        "single_tag.html",
+        {
+            "tag": tag,
+            "count_label": label,
+        },
+    )
 
 
 @login_required
@@ -1954,7 +1941,12 @@ def edit_tag(request, id):
         else:
             return render(request, "edit_tag.html", {"form": form, "tag": tag})
     return render(
-        request, "edit_tag.html", {"form": PuzzleTagForm(instance=tag), "tag": tag,}
+        request,
+        "edit_tag.html",
+        {
+            "form": PuzzleTagForm(instance=tag),
+            "tag": tag,
+        },
     )
 
 
@@ -1988,16 +1980,10 @@ def users(request):
                     key
                     + "_puzzles__status__in": [
                         status.DEAD,
-                        status.DEFERRED,
                         status.DONE,
                     ]
                 }
             ),
-            distinct=True,
-        )
-        annotation_kwargs[key + "_deferred"] = Count(
-            key + "_puzzles",
-            filter=Q(**{key + "_puzzles__status": status.DEFERRED}),
             distinct=True,
         )
         annotation_kwargs[key + "_dead"] = Count(
@@ -2029,7 +2015,13 @@ def users(request):
         # FIXME You can do this quickly in Django 3.x
         user.is_meta_editor = user.has_perm("puzzle_editing.change_round")
 
-    return render(request, "users.html", {"users": users,})
+    return render(
+        request,
+        "users.html",
+        {
+            "users": users,
+        },
+    )
 
 
 @login_required
@@ -2081,5 +2073,15 @@ def preview_markdown(request):
         output = render_to_string(
             "preview_markdown.html", {"input": request.body.decode("utf-8")}
         )
-        return JsonResponse({"success": True, "output": output,})
-    return JsonResponse({"success": False, "error": "No markdown input received",})
+        return JsonResponse(
+            {
+                "success": True,
+                "output": output,
+            }
+        )
+    return JsonResponse(
+        {
+            "success": False,
+            "error": "No markdown input received",
+        }
+    )
