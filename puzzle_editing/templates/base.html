@@ -34,11 +34,8 @@
 						{% nav_link current_path 'index' 'Dashboard' %}
 						{% nav_link current_path 'authored' 'Your Puzzles' %}
 						{% nav_link current_path 'testsolve_main' 'Testsolve' %}
-						{% nav_link current_path 'factcheck' 'Factcheck' %}
-						{% nav_link current_path 'postprod' 'Postprod' %}
 						{% nav_link current_path 'all' 'All Puzzles' %}
 						{% if perms.puzzle_editing.change_round %}
-						{% nav_link current_path 'awaiting_editor' 'Awaiting Editor' %}
 						{% nav_link current_path 'rounds' 'Rounds/Answers' %}
 						{% endif %}
 						{% nav_link current_path 'users' 'Users' %}
@@ -53,7 +50,7 @@
 						</div>
 						<!-- <div class="nav-countdown">
 							{% countdown %}
-						</div> 
+						</div>
 						<select id="theme" class="theme">
 							<option value="classic">classic</option>
 							<option value="dark">dark</option>
@@ -62,10 +59,10 @@
 							<option value="solarized">solarized</option>
 							<option value="flamewyrm">flamewyrm</option>
 						</select> -->
-						
+
 						<div class="nav-login">
 						{% if request.user.is_authenticated %}
-						<div class="nav-logged-in">Logged in as 
+						<div class="nav-logged-in">Logged in as
 							<a href="{% url 'account' %}">{{ request.user.username }}</a>
 						</div>
 						<a href="{% url 'logout' %}">Logout</a>

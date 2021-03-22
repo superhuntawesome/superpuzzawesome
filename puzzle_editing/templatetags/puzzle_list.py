@@ -129,7 +129,6 @@ def puzzle_list(context, puzzles, user, with_new_link=False):
         ),
         "new_puzzle_link": False,
         "dead_status": status.DEAD,
-        "deferred_status": status.DEFERRED,
         "past_needs_solution_statuses": [
             st["value"]
             for st in status.ALL_STATUSES

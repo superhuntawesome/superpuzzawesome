@@ -35,7 +35,7 @@ timetypes = {
 }
 
 
-exclude = [status.DEAD, status.DEFERRED, status.INITIAL_IDEA]
+exclude = [status.DEAD, status.INITIAL_IDEA]
 
 
 def curr_puzzle_graph_b64(time: str, target_count):
