@@ -5,6 +5,7 @@ import re
 
 import django.forms as forms
 import django.urls as urls
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User
@@ -30,7 +31,6 @@ from django.views.static import serve
 import puzzle_editing.messaging as messaging
 import puzzle_editing.status as status
 import puzzle_editing.utils as utils
-import puzzlord.settings as settings
 from puzzle_editing.graph import curr_puzzle_graph_b64
 from puzzle_editing.models import CommentReaction
 from puzzle_editing.models import get_user_role
@@ -511,8 +511,8 @@ def add_comment(
         )
 
 
-@login_required  # noqa: C901
-def puzzle(request, id):
+@login_required
+def puzzle(request, id):  # noqa: C901
     puzzle = get_object_or_404(Puzzle, id=id)
     user = request.user
 
@@ -2029,7 +2029,10 @@ def editors(request):
     users = (
         User.objects.all()
         .annotate(
-            editing_all=Count("editing_puzzles", distinct=True,),
+            editing_all=Count(
+                "editing_puzzles",
+                distinct=True,
+            ),
             editing_pre_testsolving=Count(
                 "editing_puzzles",
                 filter=Q(editing_puzzles__status__in=status.PRE_TESTSOLVING_STATUSES),
@@ -2067,7 +2070,13 @@ def editors(request):
 
     users = [user for user in users if user.is_meta_editor or user.editing_all > 0]
 
-    return render(request, "editors.html", {"users": users,})
+    return render(
+        request,
+        "editors.html",
+        {
+            "users": users,
+        },
+    )
 
 
 @login_required

@@ -41,3 +41,6 @@ puzzle_postprods/
 
 # SECRETS
 .env
+
+# Gimp
+*.xcf

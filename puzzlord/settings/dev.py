@@ -1,12 +1,12 @@
-from settings.base import *
+from puzzlord.settings.base import *
 
 DEBUG = True
 
-EMAIL_SUBJECT_PREFIX = u"[\u2708\u2708\u2708DEVELOPMENT\u2708\u2708\u2708] "
-ALLOWED_HOSTS = [".hunt.superteamaweso.me", "127.0.0.1"]
+EMAIL_SUBJECT_PREFIX = "[Huntinality PuzzLorde Dev] "
+ALLOWED_HOSTS = ["http://localhost:8000/", "127.0.0.1"]
 
 # Writes email to stdout instead of sending a real email. Comment if you want real emails in dev.
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 LOGGING = {
     "version": 1,

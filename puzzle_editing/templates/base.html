@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="{% static "css/general.css" %}">
 		<link rel="shortcut icon" href="{% static 'favicon.ico' %}"/>
-		<title>{% block title %}SuperPuzzAwesome{% endblock %}</title>
+		<title>{% block title %}PuzzLorde{% endblock %}</title>
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 	</head>
@@ -16,7 +16,7 @@
 		<div class="content-container">
 			{% block nav %}
 			<div class="mobile-header">
-				SuperPuzzAwesome
+				PuzzLorde
 			</div>
 			<label>
 				<div class="nav-click-area"></div>
@@ -27,7 +27,7 @@
 					<div class="hot-dog hot-dog-bottom"></div>
 				</div>
 				<nav id="nav-menu">
-					<a href="{% url 'index' %}"><img class="home" src="{% static 'mojo-spa.png' %}" alt="mojo"/></a>
+					<a href="{% url 'index' %}"><img class="home" src="{% static 'puzzlorde.png' %}" alt="mojo"/></a>
 					{% with request.path as current_path %}
 					<div class="nav-links">
 						{% nav_link current_path 'new' 'New Puzzle' %}
@@ -45,7 +45,7 @@
 					{% endwith %}
 					<div class="nav-second">
 						<div class="nav-message">
-							<p>SuperPuzzAwesome<br />v1.0.0</p>
+							<p>PuzzLorde<br />v1.0.0</p>
 							<p class="tiny-note">Themes will be back soon!</p>
 						</div>
 						<!-- <div class="nav-countdown">

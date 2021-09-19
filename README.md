@@ -39,12 +39,13 @@ To release, go to the 'Releases' page, edit the current draft, and publish it. T
         SECRET_KEY=FIX_ME
         SITE_PASSWORD=FIX_ME
         DEBUG=true
+        EMAIL_HOST_USER=FIX_ME
         EMAIL_HOST_PASSWORD=FIX_ME
         ```
 
         - the SECRET_KEY should be a highly secure random string, which Django uses for hashes, CSRF tokens, and such
         - SITE_PASSWORD is what you will give out to users to let them register accounts
-        - EMAIL_HOST_PASSWORD is the email password of the email account where email notifications will be sent
+        - EMAIL_HOST_USER and EMAIL_HOST_PASSWORD is the email user and password of the email account where email notifications will be sent
 	- the hosts in `settings/staging.py` and `settings/prod.py`
 - Make sure the database schema is up to date with `python manage.py migrate`
 - Make a superuser with `python manage.py createsuperuser`

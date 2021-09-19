@@ -24,7 +24,7 @@
 	--by-author-color: #fee;
 	--testsolve-color: #efe;
 
-	--highlight-color: #F26D00;
+	--highlight-color: #C41E3A;
 }
 
 [data-theme="dark"] {
@@ -230,7 +230,7 @@ nav a:visited {
 	font-weight: 400;
 }
 
-.nav-links a.new, 
+.nav-links a.new,
 .nav-links a.selected.new {
 	padding: 9px 25px 12px;
 	opacity: 1;
@@ -368,7 +368,7 @@ nav a:visited {
 	.nav-checkbox:checked~nav {
 		transform: translate(0);
 	}
-	
+
 
 	.nav-checkbox:checked~.hot-dog-party .hot-dog-top {
         transform: rotate(45deg) translate(5px, 7px);
@@ -394,7 +394,7 @@ nav a:visited {
 		display: block;
 		padding-top: 50px;
 	}
-	
+
 }
 
 .menu-button {

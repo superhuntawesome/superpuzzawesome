@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import LogoutView
 from django.contrib.auth.views import PasswordChangeDoneView
@@ -26,7 +27,9 @@ urlpatterns = [
     ),
     path(
         "reset-password",
-        PasswordResetView.as_view(template_name="reset_password.html"),
+        PasswordResetView.as_view(
+            template_name="reset_password.html", from_email=settings.FROM_EMAIL
+        ),
         name="reset_password",
     ),
     path(

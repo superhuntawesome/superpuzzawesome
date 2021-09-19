@@ -8,10 +8,10 @@ def send_mail_wrapper(subject, template, context, recipients):
         mail = EmailMultiAlternatives(
             subject=settings.EMAIL_SUBJECT_PREFIX + subject,
             body=render_to_string(template + ".txt", context),
-            from_email="SHA Puzzlord <shapuzzlord@gmail.com>",
+            from_email=settings.FROM_EMAIL,
             to=recipients,
             alternatives=[(render_to_string(template + ".html", context), "text/html")],
-            reply_to=["shapuzzlord@gmail.com"],
+            reply_to=[settings.FROM_EMAIL],
         )
         send_res = mail.send()
         if send_res != 1:
