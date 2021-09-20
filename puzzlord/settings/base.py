@@ -142,7 +142,6 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = os.getenv("EMAIL_PORT", 587)
 FROM_EMAIL = os.getenv("FROM_EMAIL", None)
-SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 
 # Writes email to stdout instead of sending a real email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
