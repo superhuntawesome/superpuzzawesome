@@ -193,7 +193,6 @@ nav {
 	background-color: var(--nav-bg);
 	color: var(--nav-color);
 	min-height: 100vh;
-	height: 800px;
 	width: 200px;
 	flex: 0 0 200px;
 	position: relative;
