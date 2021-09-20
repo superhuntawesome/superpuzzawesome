@@ -31,7 +31,6 @@ To release, go to the 'Releases' page, edit the current draft, and publish it. T
 	- Use `venv\Scripts\activate` on Windows.
 - Install the required packages (mainly Django): `pip3 install -r requirements.txt`
 	- Are you getting `fatal error: Python.h: No such file or directory`? Try installing `python-dev` libraries first (e.g. `sudo apt-get install python-dev`).
-- Create a folder for logs to go in: `mkdir logs`
 - **Fix all the configuration options, secret keys and credentials:**
     - Create a `.env` file at the root of the repository with the following:
 
