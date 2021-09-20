@@ -6,6 +6,6 @@ Your Puzzles
 {% block main %}
 	<h1>Your Puzzles</h1>
 	{% puzzle_list puzzles request.user with_new_link=True %}
-	<h2>Editing Puzzles</h2>
+	<h1>Editing Puzzles</h1>
 	{% puzzle_list editing_puzzles request.user %}
 {% endblock %}

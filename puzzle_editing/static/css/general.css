@@ -486,8 +486,9 @@ table.classic {
 	overflow-wrap: break-word;
 }
 table.classic th, table.compact th {
-	padding: 0.5em;
+	padding: 0.5em 1em 0.5em 1em;
 	background-color: var(--secondary-bg);
+	text-align: center;
 }
 table.classic th.small {
     font-size: 85%;
@@ -512,7 +513,7 @@ td.label-cell label {
 	font-size: 85%; opacity: 50%;
 }
 table.classic td {
-	padding:  10px 5px 10px 0;
+	padding:  0em 1em 0em 1em;
 	border-top: 1px solid var(--border-color);
 	max-width: 30em;
 }
@@ -554,6 +555,9 @@ table.classic td {
 }
 #change-status {
 	background-color: var(--tertiary-bg);
+}
+button[name="change_status"] {
+	text-align: left;
 }
 table.puzzle-table {
 	min-width: 100%;
