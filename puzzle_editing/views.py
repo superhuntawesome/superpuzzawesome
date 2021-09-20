@@ -2048,11 +2048,6 @@ def editors(request):
                 filter=Q(editing_puzzles__status=status.DONE),
                 distinct=True,
             ),
-            editing_deferred=Count(
-                "editing_puzzles",
-                filter=Q(editing_puzzles__status=status.DEFERRED),
-                distinct=True,
-            ),
             editing_dead=Count(
                 "editing_puzzles",
                 filter=Q(editing_puzzles__status=status.DEAD),
