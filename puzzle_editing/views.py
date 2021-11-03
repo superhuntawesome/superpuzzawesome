@@ -77,7 +77,7 @@ def get_full_display_name(user):
     try:
         if (
             user.profile.display_name
-            and user.profile.display_name.lower() != user.username
+            and user.profile.display_name.lower() != user.username.lower()
         ):
             return "{} ({})".format(user.profile.display_name, user.username)
         else:
