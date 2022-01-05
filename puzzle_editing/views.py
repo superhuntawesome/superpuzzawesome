@@ -1807,9 +1807,15 @@ def edit_round(request, id):
 
 
 @login_required
-@permission_required("puzzle_editing.change_round")
 def edit_answer(request, id):
     answer = get_object_or_404(PuzzleAnswer, id=id)
+    
+    if not (
+        request.user.has_perm("puzzle_editing.change_round")
+        or answer.round.meta_writers.filter(id=request.user.id).exists()
+    ):
+        raise PermissionDenied
+
 
     if request.method == "POST":
         answer_form = AnswerForm(answer.round, request.POST, instance=answer)

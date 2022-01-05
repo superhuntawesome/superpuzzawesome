@@ -5,7 +5,9 @@ Edit Answer {{ answer.id }}
 {% endblock %}
 {% block main %}
 	<h1>Edit Answer {{ answer.id }}: {{ answer.answer }}</h1>
-	<a href="{% url 'rounds' %}">Back to rounds/answers</a>
+	<a href="{% url 'view_round' answer.round.id %}">Back to rounds/answers</a>
+
+	<br><br>
 
 	<form method="post">
 		{% csrf_token %}
