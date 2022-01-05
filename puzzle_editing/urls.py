@@ -67,6 +67,7 @@ urlpatterns = [
     path("testsolve/<int:id>/finish", views.testsolve_finish, name="testsolve_finish"),
     path("rounds", views.rounds, name="rounds"),
     path("answer/<int:id>", views.edit_answer, name="edit_answer"),
+    path("rounds/<int:id>/view", views.view_round, name="view_round"),
     path("rounds/<int:id>/edit", views.edit_round, name="edit_round"),
     path("rounds/<int:id>/bulk_add", views.bulk_add_answers, name="bulk_add_answers"),
     path("users", views.users, name="users"),

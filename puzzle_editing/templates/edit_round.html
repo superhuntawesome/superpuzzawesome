@@ -13,12 +13,15 @@ Edit Round {{ round.name }}
 		</table>
 		<input type="submit" value="Submit">
 	</form>
-	<h2>Delete round</h2>
-	<form method="post">
-		{% if has_answers %}Remove all this round's answers in order to delete it.{% else %}
-		{% csrf_token %}
-		<input type="checkbox" name="sure-delete" class="sure-delete" id="sure-delete"><label for="sure-delete">I want to delete the {{round.name}} round.</label><br>
-		<input type="submit" name="delete" value="Delete round" class="delete-round-button">
-		{% endif %}
-	</form>
+
+	{% if can_delete %}
+		<h2>Delete round</h2>
+		<form method="post">
+			{% if has_answers %}Remove all this round's answers in order to delete it.{% else %}
+			{% csrf_token %}
+			<input type="checkbox" name="sure-delete" class="sure-delete" id="sure-delete"><label for="sure-delete">I want to delete the {{round.name}} round.</label><br>
+			<input type="submit" name="delete" value="Delete round" class="delete-round-button">
+			{% endif %}
+		</form>
+	{% endif %}
 {% endblock %}

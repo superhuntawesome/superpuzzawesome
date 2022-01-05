@@ -44,6 +44,10 @@ class Misc(TestCase):
         )
         self.a.user_permissions.add(permission)
 
+        self.round = Round(name="Round")
+        self.round.save()
+        self.round.meta_writers.add(self.b)
+
         self.puzzle1 = Puzzle(
             name="Spoilery Title",
             codename="codename",
@@ -208,7 +212,10 @@ class Misc(TestCase):
         bc = Client()
         bc.login(username="b", password="password")
 
-        for client in [ac, bc]:
+        cc = Client()
+        cc.login(username="c", password="password")
+
+        for client in [ac, bc, cc]:
             for urlname in [
                 "users",
                 "users_statuses",
@@ -229,6 +236,24 @@ class Misc(TestCase):
         )
         self.assertEqual(
             bc.get(urls.reverse("rounds")).status_code,
-            302,
-            "rounds doesn't work for non-meta-editor",
+            200,
+            "rounds works for non-meta-editor",
+        )
+
+        self.assertEqual(
+            ac.get(urls.reverse("edit_round", args=[self.round.id])).status_code,
+            200,
+            "editing rounds works for non-meta-editor",
+        )
+
+        self.assertEqual(
+            bc.get(urls.reverse("edit_round", args=[self.round.id])).status_code,
+            200,
+            "editing rounds works for non-meta-editor",
+        )
+
+        self.assertEqual(
+            cc.get(urls.reverse("edit_round", args=[self.round.id])).status_code,
+            403,
+            "editing rounds doesn't work for non-meta-editor",
         )

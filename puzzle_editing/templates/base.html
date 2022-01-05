@@ -35,9 +35,7 @@
 						{% nav_link current_path 'authored' 'Your Puzzles' %}
 						{% nav_link current_path 'testsolve_main' 'Testsolve' %}
 						{% nav_link current_path 'all' 'All Puzzles' %}
-						{% if perms.puzzle_editing.change_round %}
 						{% nav_link current_path 'rounds' 'Rounds/Answers' %}
-						{% endif %}
 						{% nav_link current_path 'users' 'Users' %}
 						{% nav_link current_path 'tags' 'Tags' %}
 						{% nav_link current_path 'statistics' 'Statistics' %}

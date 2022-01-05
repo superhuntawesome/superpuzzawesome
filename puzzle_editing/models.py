@@ -110,6 +110,12 @@ class Round(models.Model):
         related_name="spoiled_rounds",
         help_text="Users spoiled on the round's answers.",
     )
+    meta_writers = models.ManyToManyField(
+        User,
+        blank=True,
+        related_name="writing_rounds",
+        help_text="Users who are writing the metas for the round",
+    )
 
     def __str__(self):
         return "Round: {}".format(self.name)
@@ -352,7 +358,8 @@ class StatusSubscription(models.Model):
     """An indication to email a user when any puzzle enters this status."""
 
     status = models.CharField(
-        max_length=status.MAX_LENGTH, choices=status.DESCRIPTIONS.items(),
+        max_length=status.MAX_LENGTH,
+        choices=status.DESCRIPTIONS.items(),
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

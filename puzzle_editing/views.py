@@ -9,6 +9,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied
 from django.core.exceptions import ValidationError
 from django.db.models import Avg
 from django.db.models import Count
@@ -1679,20 +1680,61 @@ class RoundForm(forms.ModelForm):
 
 
 @login_required
-@permission_required("puzzle_editing.change_round")
 def rounds(request):
     user = request.user
 
     new_round_form = RoundForm()
     if request.method == "POST":
-        if "spoil_on" in request.POST:
-            get_object_or_404(Round, id=request.POST["spoil_on"]).spoiled.add(user)
+        if "new_round" in request.POST:
+            if request.user.has_perm("puzzle_editing.add_round"):
+                new_round_form = RoundForm(request.POST)
+                if new_round_form.is_valid():
+                    new_round = new_round_form.save()
+                    new_round.spoiled.add(user)
+            else:
+                raise PermissionDenied
 
-        elif "new_round" in request.POST:
-            new_round_form = RoundForm(request.POST)
-            if new_round_form.is_valid():
-                new_round = new_round_form.save()
-                new_round.spoiled.add(user)
+        return redirect(urls.reverse("rounds"))
+
+    has_change_round = request.user.has_perm("puzzle_editing.change_round")
+    rounds = [
+        {
+            "id": round.id,
+            "name": round.name,
+            "description": round.description,
+            "spoiled": round.spoiled.filter(id=user.id).exists(),
+            "can_edit": has_change_round
+            or round.meta_writers.filter(id=user.id).exists(),
+        }
+        for round in Round.objects.all()
+    ]
+
+    rounds = [r for r in rounds if r["spoiled"] or r["can_edit"]]
+
+    return render(
+        request,
+        "rounds.html",
+        {
+            "rounds": rounds,
+            "can_add": request.user.has_perm("puzzle_editing.add_round"),
+            "new_round_form": RoundForm(),
+        },
+    )
+
+
+@login_required
+def view_round(request, id):
+    round = get_object_or_404(Round, id=id)
+    can_edit = round.meta_writers.filter(
+        id=request.user.id
+    ).exists() or request.user.has_perm("puzzle_editing.change_round")
+
+    if request.method == "POST":
+        if "spoil_on" in request.POST:
+            get_object_or_404(Round, id=id).spoiled.add(user)
+
+        if not can_edit:
+            raise PermissionDenied
 
         elif "add_answer" in request.POST:
             answer_form = AnswerForm(None, request.POST)
@@ -1702,54 +1744,56 @@ def rounds(request):
         elif "delete_answer" in request.POST:
             get_object_or_404(PuzzleAnswer, id=request.POST["delete_answer"]).delete()
 
-        return redirect(urls.reverse("rounds"))
+        return redirect(urls.reverse("view_round", args=[id]))
 
-    rounds = [
+    answers = [
         {
-            "id": round.id,
-            "name": round.name,
-            "description": round.description,
-            "spoiled": round.spoiled.filter(id=user.id).exists(),
-            "answers": [
-                {
-                    "answer": answer.answer,
-                    "id": answer.id,
-                    "notes": answer.notes,
-                    "puzzles": answer.puzzles.all(),
-                }
-                for answer in round.answers.all()
-            ],
-            "form": AnswerForm(round),
+            "answer": answer.answer,
+            "id": answer.id,
+            "notes": answer.notes,
+            "puzzles": answer.puzzles.all(),
         }
-        for round in Round.objects.all()
+        for answer in round.answers.all()
     ]
 
     return render(
         request,
-        "rounds.html",
+        "round.html",
         {
-            "rounds": rounds,
-            "new_round_form": RoundForm(),
+            "name": round.name,
+            "id": round.id,
+            "can_edit": can_edit,
+            "spoiled": can_edit or round.spoiled.filter(id=request.user.id).exists(),
+            "answers": answers,
+            "form": AnswerForm(round),
         },
     )
 
 
 @login_required
-@permission_required("puzzle_editing.change_round")
 def edit_round(request, id):
     round = get_object_or_404(Round, id=id)
+    if not (
+        request.user.has_perm("puzzle_editing.change_round")
+        or round.meta_writers.filter(id=request.user.id).exists()
+    ):
+        raise PermissionDenied
+
     if request.method == "POST":
-        print(request.POST)
         if request.POST.get("delete") and request.POST.get("sure-delete") == "on":
-            round.delete()
-            return redirect(urls.reverse("rounds"))
+            if request.user.has_perm("puzzle_editing.delete_round"):
+                round.delete()
+                return redirect(urls.reverse("rounds"))
+            else:
+                raise PermissionDenied
+
         form = RoundForm(request.POST, instance=round)
         if form.is_valid():
             form.save()
-
             return redirect(urls.reverse("rounds"))
         else:
             return render(request, "edit_round.html", {"form": form})
+
     return render(
         request,
         "edit_round.html",
@@ -1757,6 +1801,7 @@ def edit_round(request, id):
             "form": RoundForm(instance=round),
             "round": round,
             "has_answers": round.answers.count(),
+            "can_delete": request.user.has_perm("puzzle_editing.delete_round"),
         },
     )
 

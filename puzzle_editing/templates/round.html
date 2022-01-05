@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load markdown %}
+{% block title %}
+Rounds
+{% endblock %}
+{% block main %}
+<h1>{{ name }}</h1>
+
+
+{% if spoiled %}
+
+<h2> Current Answers </h2>
+
+
+<input id="hide-assignments" type="checkbox" class="hide-assignments" checked> <label for="hide-assignments">Hide puzzle assignments</label>
+<input id="hide-delete-answer" type="checkbox" class="hide-delete-answer" checked> <label for="hide-delete-answer">Hide delete answer buttons</label>
+
+<div class="table-wrap">
+    <table class="classic">
+        <tr>
+            {% if can_edit %}
+            <th></th>
+            <th></th>
+            {% endif %}
+            <th>Answer</th>
+            <th>Puzzle</th>
+            <th>Status</th>
+            <th>Notes</th>
+        </tr>
+        {% for answer in answers %}
+            {% if answer.puzzles %}
+            {% for puzzle in answer.puzzles %}
+            <tr>
+                {% if forloop.first and can_edit %}
+                <td rowspan="{{ answer.puzzles|length }}">
+                    <a href="{% url 'edit_answer' answer.id %}">edit</a>
+                </td>
+                <td rowspan="{{ answer.puzzles|length }}">
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" name="delete_answer" value="{{ answer.id }}" class="delete-answer-button">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+                {% endif %}
+
+                <td rowspan="{{ answer.puzzles|length }}">
+                    {{ answer.answer }}
+                </td>
+
+                <td>
+                    <a href="{% url 'puzzle' puzzle.id %}">
+                        <span class="assignment-spoiler">{{ puzzle.html_display }}</span>
+                        <span class="assignment-unspoiler">(hidden)</span>
+                    </a>
+                </td>
+                <td>
+                    <span class="assignment-spoiler">{{ puzzle.get_status_display }}</span>
+                    <span class="assignment-unspoiler">(hidden)</span>
+                </td>
+                {% if forloop.first %}
+                <td rowspan="{{ answer.puzzles|length }}" class="small-md">
+                    {% if answer.notes %}{{ answer.notes|markdown }}{% endif %}
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+
+                {% if can_edit %}
+                <td>
+                    <a href="{% url 'edit_answer' answer.id %}">edit</a>
+                </td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" name="delete_answer" value="{{ answer.id }}" class="delete-answer-button">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+                {% endif %}
+
+                <td>{{ answer.answer }}</td>
+                <td colspan="2" class="empty">(no puzzle assigned)</td>
+                <td class="small-md">
+                    {% if answer.notes %}{{ answer.notes|markdown }}{% endif %}
+                </td>
+            {% endif %}
+        {% endfor %}
+
+    </table>
+
+    {% if can_edit %}
+    <h2> Add Answers </h2>
+
+    <tr>
+        <td colspan="6">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" name="add_answer" value="Add answer">
+                or
+                <a href="{% url 'bulk_add_answers' id %}">bulk-add answers</a>
+            </form>
+        </td>
+    </tr>
+    {% endif %}
+
+</div>
+
+{% else %}
+
+Description and {{ round.answers|length }} answer{{ round.answers|length|pluralize }} not shown because you're not spoiled.
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" name="spoil_on" value="{{ id }}">Spoil me</button>
+</form>
+{% endif %}
+
+{% endblock %}
