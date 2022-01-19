@@ -83,7 +83,7 @@ Rounds
                 </td>
                 {% endif %}
 
-                <td>{{ answer.answer }}</td>
+                <td><a class="spoiler" title="Click to reveal" onclick="this.classList.remove('spoiler');" href="#">{{ answer.answer }}</a></td>
                 <td colspan="2" class="empty">(no puzzle assigned)</td>
                 <td class="small-md">
                     {% if answer.notes %}{{ answer.notes|markdown }}{% endif %}

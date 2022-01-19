@@ -701,6 +701,12 @@ blockquote > p:last-child {
 	content: " ";
 	display: block;
 }
+
+a.spoiler {
+	background: #333333;
+	border-radius: 0.2em;
+}
+
 .hide-assignments:checked ~ div > table .assignment-spoiler {
 	display: none;
 }
