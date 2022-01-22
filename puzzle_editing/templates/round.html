@@ -46,7 +46,7 @@ Rounds
                 {% endif %}
 
                 <td rowspan="{{ answer.puzzles|length }}">
-                    {{ answer.answer }}
+                    <a class="spoiler" title="Click to reveal" onclick="this.classList.remove('spoiler');" href="#">{{ answer.answer }}</a>
                 </td>
 
                 <td>
