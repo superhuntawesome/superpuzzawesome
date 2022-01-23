@@ -3,7 +3,7 @@
 <input id="hide-assigned-to-other" type="checkbox" class="hide-assigned-to-other ui-only" checked> <label for="hide-assigned-to-other">Hide answers assigned to other puzzles</label>
 <!-- TODO is this slow? are we comparing rounds by equality? -->
 {% regroup options by instance.round as round_groups %}
-<table class="compact">
+<table class="classic">
 {% for round_group in round_groups %}
 	<tr>
 		<th colspan="3" class="soft">
