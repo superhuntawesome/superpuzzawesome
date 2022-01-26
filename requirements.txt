@@ -1,119 +1,122 @@
-aiohttp @ file:///home/shuxin/.cache/pypoetry/artifacts/e6/b7/73/8d17934f488836015688d06d1e12d8c3c32c493c1a1d67e6c67fc9f91c/aiohttp-3.7.4.post0-cp38-cp38-manylinux2014_x86_64.whl
-amqp @ file:///home/shuxin/.cache/pypoetry/artifacts/b2/f2/c3/1dbb98ea90b2bf65c1d91765a3fb60f58c7f371096fd2430440990bb08/amqp-5.0.9-py3-none-any.whl
+aiohttp==3.7.4.post0
+amqp==5.0.9
 asgiref==3.5.0
-async-timeout @ file:///home/shuxin/.cache/pypoetry/artifacts/0d/5d/3e/630122e534c1b25e36c3142597c4b0b2e9d3f2e0a9cea9f10ac219f9a7/async_timeout-3.0.1-py3-none-any.whl
-attrs @ file:///home/shuxin/.cache/pypoetry/artifacts/9a/27/ab/6895b786f345452394b42c1fdbe863803d0396e675b632c01cb13cad92/attrs-21.4.0-py2.py3-none-any.whl
-backports.zoneinfo @ file:///home/shuxin/.cache/pypoetry/artifacts/aa/b4/b4/7a4329bc0b3589a13e82474586b62709ce2f876aef24a34bcc3f685bb0/backports.zoneinfo-0.2.1-cp38-cp38-manylinux1_x86_64.whl
-billiard @ file:///home/shuxin/.cache/pypoetry/artifacts/37/f6/65/d35c92d728dbe48ad715603358c7fae3694aca4341b9330f35eeb2c3cb/billiard-3.6.4.0-py3-none-any.whl
-black @ file:///home/shuxin/.cache/pypoetry/artifacts/28/85/b6/8780c94136b83b86eb92c216e3b7680b2e7ff41d953cb4315894c12f74/black-21.12b0-py3-none-any.whl
+async-timeout==3.0.1
+attrs==21.4.0
+backports.zoneinfo==0.2.1
+billiard==3.6.4.0
+black==21.12b0
 bleach==3.3.0
-cachetools @ file:///home/shuxin/.cache/pypoetry/artifacts/f9/20/3d/b32baed65351f7bfb969d54b511441bab7950a0245cdb6d5bcb2a88dcc/cachetools-5.0.0-py3-none-any.whl
+cachetools==5.0.0
 cardboard==0.1.0
-celery @ file:///home/shuxin/.cache/pypoetry/artifacts/6f/12/25/298b0bdbc704017182061fa53d0c87f56f0e312feaaa9c45ec521206f8/celery-5.2.3-py3-none-any.whl
+celery==5.2.3
 certifi==2020.6.20
-cffi @ file:///home/shuxin/.cache/pypoetry/artifacts/62/c3/29/c16154cce4786b02879598f3745b0a55c96f76bec9c5c8175be8d5cd71/cffi-1.15.0-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+cffi==1.15.0
 cfgv==3.3.1
-chardet @ file:///home/shuxin/.cache/pypoetry/artifacts/47/b7/82/19c2b887f87f3adbaf4e34c55189388e5132c78f6929d7001a78b0209b/chardet-4.0.0-py2.py3-none-any.whl
-charset-normalizer @ file:///home/shuxin/.cache/pypoetry/artifacts/29/08/0b/18a5b01605aa22aab30518fc8cb6c0777890b2b9b842f7a691b70ec4a7/charset_normalizer-2.0.10-py3-none-any.whl
+chardet==4.0.0
+charset-normalizer==2.0.10
 click==8.0.3
-click-didyoumean @ file:///home/shuxin/.cache/pypoetry/artifacts/5f/8a/24/56a5aa330dd69bcae93c5017b0acd22c808acda003edbc4558c0ca909f/click_didyoumean-0.3.0-py3-none-any.whl
-click-plugins @ file:///home/shuxin/.cache/pypoetry/artifacts/c6/6b/c8/2f62f7d37dfef3f9f445d3503ff3b3cd4d69531496e956f7363099e86f/click_plugins-1.1.1-py2.py3-none-any.whl
-click-repl @ file:///home/shuxin/.cache/pypoetry/artifacts/ec/dd/e3/45a9edb1cfdb658af256586577fd64af3c692acc14b32a18bb575a51c5/click_repl-0.2.0-py3-none-any.whl
+click-didyoumean==0.3.0
+click-plugins==1.1.1
+click-repl==0.2.0
 colorama==0.4.4
 commonmark==0.9.1
-coverage @ file:///home/shuxin/.cache/pypoetry/artifacts/67/14/5f/cdc18685d9ffd785b6033e54ee82ed5546aa1fa5e5334017a45ae48652/coverage-6.2-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl
-cryptography @ file:///home/shuxin/.cache/pypoetry/artifacts/a3/bf/af/568b4f900b47050715c04cedf340b5de0373f806a090a59e03f49f8a4a/cryptography-36.0.1-cp36-abi3-manylinux_2_24_x86_64.whl
+coverage==6.2
+cryptography==36.0.1
 cycler==0.10.0
-defusedxml @ file:///home/shuxin/.cache/pypoetry/artifacts/15/b0/94/888992ee7b1de9fbc975b6afd17d34f441df6e96172df8d4eba95c9432/defusedxml-0.7.1-py2.py3-none-any.whl
-Deprecated @ file:///home/shuxin/.cache/pypoetry/artifacts/a1/54/60/4388a99c14cd296d410c6caa1d625df8f20eabdff83d77e46c3bb305cd/Deprecated-1.2.13-py2.py3-none-any.whl
-disco-py @ file:///home/shuxin/.cache/pypoetry/artifacts/3d/b6/3c/7b0ef175a075173131ca1b346e21c6f61a33d08399043bc3d45d905577/disco-py-0.0.14rc1.tar.gz
-discord.py @ file:///home/shuxin/.cache/pypoetry/artifacts/93/3d/7e/a71579025e378cc8608f84db0999aa01171575fc9bd9078988d8520a75/discord.py-1.7.3-py3-none-any.whl
+defusedxml==0.7.1
+Deprecated==1.2.13
+disco-py==0.0.14rc1
+discord.py==1.7.3
 distlib==0.3.4
 dj-database-url==0.5.0
 Django==4.0.1
-django-celery-results @ file:///home/shuxin/.cache/pypoetry/artifacts/73/b6/5d/b51f5cb2298b436d22bb9a2f362c6d50f40a76abb9d2697bc68d5188e1/django_celery_results-2.2.0-py2.py3-none-any.whl
-django-heroku @ file:///home/shuxin/.cache/pypoetry/artifacts/da/df/9c/7ed17c1dc8edc0ccbd03efccaca6f9270b2aedcb3af280538540f04fe9/django_heroku-0.3.1-py2.py3-none-any.whl
-django-taggit @ file:///home/shuxin/.cache/pypoetry/artifacts/49/c0/a3/81015afd09b0c247f91576b951972f1015b947f872f2e8da36e05358ea/django_taggit-2.0.0-py3-none-any.whl
-djangorestframework @ file:///home/shuxin/.cache/pypoetry/artifacts/26/35/a0/a6ce4be91f40db3745764f654be4505b601bbf4b5c9796c4c8e0272d74/djangorestframework-3.13.1-py3-none-any.whl
+django-celery-results==2.2.0
+django-heroku==0.3.1
+django-taggit==2.0.0
+djangorestframework==3.13.1
 filelock==3.4.2
 gevent==1.5.0
-gfycat @ file:///home/shuxin/.cache/pypoetry/artifacts/e7/42/e1/942c93a4f2d675c08ad7d3d82b5066783dac8d4242d4be26f68cdaa137/gfycat-0.2.2-py3-none-any.whl
+gfycat==0.2.2
 gitdb==4.0.5
 GitPython==3.1.7
-google-api-core @ file:///home/shuxin/.cache/pypoetry/artifacts/d3/97/54/85314bf76ffd1b9ab3794d8ed47c4a8d239262fef7d09d14fa5f584381/google_api_core-2.3.2-py2.py3-none-any.whl
-google-api-python-client @ file:///home/shuxin/.cache/pypoetry/artifacts/eb/26/bc/8eeb40c5199051c346d55f1a1468ba8be0b1409a03d15b678e508e0f89/google_api_python_client-2.33.0-py2.py3-none-any.whl
+google-api-core==2.3.2
+google-api-python-client==2.33.0
 google-auth==2.5.0
-google-auth-httplib2 @ file:///home/shuxin/.cache/pypoetry/artifacts/8f/af/ef/b0ed813928214c713a59a3ffc1c3252ddfa434103d03867a79b573d8d1/google_auth_httplib2-0.1.0-py2.py3-none-any.whl
-googleapis-common-protos @ file:///home/shuxin/.cache/pypoetry/artifacts/0a/27/c0/18af4c716c2c15109fcccd03bb596f68d8808e2ad975a1663cf57fc69a/googleapis_common_protos-1.54.0-py2.py3-none-any.whl
+google-auth-httplib2==0.1.0
+googleapis-common-protos==1.54.0
 greenlet==0.4.16
 gunicorn==20.0.4
-holster @ file:///home/shuxin/.cache/pypoetry/artifacts/32/94/3a/595451402b5c4442debb0bf237a829c190fdd69062914ecea1d0d5ad32/holster-2.0.0.tar.gz
-httplib2 @ file:///home/shuxin/.cache/pypoetry/artifacts/2b/24/6e/2cd1d22fe6802382bf49bdda3639c5986472e76c418cd970edfefc86bd/httplib2-0.20.2-py3-none-any.whl
+holster==2.0.0
+httplib2==0.20.2
 identify==2.4.1
-idna @ file:///home/shuxin/.cache/pypoetry/artifacts/f7/09/c9/8e80952436ff87855ddff4891a35ecf913b2b5dc97911f02a070ff2b1f/idna-3.3-py3-none-any.whl
-imgurpython @ file:///home/shuxin/.cache/pypoetry/artifacts/0c/67/87/d8c0907d2779870f6bac94ae57e58bf764de5ee560455fe3d41b132f58/imgurpython-1.1.7.tar.gz
+idna==3.3
+imgurpython==1.1.7
 kiwisolver==1.3.1
-kombu @ file:///home/shuxin/.cache/pypoetry/artifacts/28/31/1a/447f91c43dc2419853e072d1cfedb0240f15af25da2a1f4acda407c212/kombu-5.2.3-py3-none-any.whl
+kombu==5.2.3
 Markdown==3.2.2
 matplotlib==3.3.1
-multidict @ file:///home/shuxin/.cache/pypoetry/artifacts/f5/69/c1/e8ec31c0813b46446f7a336c67e8d136d12ab12dc65e13bb8cd1b530ab/multidict-5.2.0-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl
-mypy-extensions @ file:///home/shuxin/.cache/pypoetry/artifacts/b6/a0/b0/a5dc9acd6fd12aba308634f21bb7cf0571448f20848797d7ecb327aa12/mypy_extensions-0.4.3-py2.py3-none-any.whl
+multidict==5.2.0
+mypy-extensions==0.4.3
 newrelic==5.16.1.146
 nodeenv==1.6.0
 numpy==1.22.1
-oauthlib @ file:///home/shuxin/.cache/pypoetry/artifacts/e6/64/ef/a43b939f04c9ee17174fb3657dba149ed15ba473ef44adf939f5032b85/oauthlib-3.1.1-py2.py3-none-any.whl
+oauthlib==3.1.1
 packaging==20.4
-pathspec @ file:///home/shuxin/.cache/pypoetry/artifacts/04/91/14/294ed2ee6c852b0d466bdd15d393127eff4168b35ae81cedf5a03fe348/pathspec-0.9.0-py2.py3-none-any.whl
+pathspec==0.9.0
 pep517==0.11.0
 Pillow==9.0.0
+pip==21.3.1
 pip-tools==6.2.0
 pipenv-poetry-migrate==0.2.0
 platformdirs==2.4.1
-praw @ file:///home/shuxin/.cache/pypoetry/artifacts/6d/53/24/7c4cf22ac29ea2eff1798eb59fe1c643c79ffa10d7166876f491527c07/praw-7.5.0-py3-none-any.whl
-prawcore @ file:///home/shuxin/.cache/pypoetry/artifacts/fb/48/27/7fd7effe131cc60670a9db214eeb9a9629179e4007f3cfd065f9ee6b05/prawcore-2.3.0-py3-none-any.whl
+praw==7.5.0
+prawcore==2.3.0
 pre-commit==2.16.0
-prompt-toolkit @ file:///home/shuxin/.cache/pypoetry/artifacts/10/65/c0/806a792337070ca9aa58be32976caef13938f10a74030df2c8b32ce798/prompt_toolkit-3.0.24-py3-none-any.whl
-protobuf @ file:///home/shuxin/.cache/pypoetry/artifacts/c1/90/af/e9aa3788bc7a9d959573c60f1a0a7358ccb00e7daa7751494b80be7a48/protobuf-3.19.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-psycopg2 @ file:///home/shuxin/.cache/pypoetry/artifacts/3c/7a/60/e4a0d26c4cee1923be3b7ae2cb545f115a822e112a6c5b5434bd25eacd/psycopg2-2.9.3.tar.gz
+prompt-toolkit==3.0.24
+protobuf==3.19.1
+psycopg2==2.9.3
 psycopg2-binary==2.9.1
-pyasn1 @ file:///home/shuxin/.cache/pypoetry/artifacts/a6/f7/5e/59a43ec23ade0888631b3f24244da7f5d5a0b6b40849c86b8c6b4c54d1/pyasn1-0.4.8-py2.py3-none-any.whl
-pyasn1-modules @ file:///home/shuxin/.cache/pypoetry/artifacts/09/f6/56/0e33158234b3e9b9e5d8eb01e7a96670a99ab43b3dbe89b0f129477a59/pyasn1_modules-0.2.8-py2.py3-none-any.whl
-pycparser @ file:///home/shuxin/.cache/pypoetry/artifacts/7a/f7/3b/fd50e9d7e1c02d2d2e8631fca716f6b6ffe3742f322e4a170eb3f2f41b/pycparser-2.21-py2.py3-none-any.whl
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
+pycparser==2.21
 Pygments==2.11.1
-PyJWT @ file:///home/shuxin/.cache/pypoetry/artifacts/7c/13/04/3e4aa78f6ee3ee721315e24346fe7226d1fc7330485447a1ce5d1151c7/PyJWT-2.3.0-py3-none-any.whl
+PyJWT==2.3.0
 pyparsing==2.4.7
 python-dateutil==2.8.1
 python-dotenv==0.15.0
-python3-openid @ file:///home/shuxin/.cache/pypoetry/artifacts/22/2f/32/795b947c687995897bdcec676fd1c493ed66e98c4af9c601fb4b8ce06a/python3_openid-3.2.0-py3-none-any.whl
+python3-openid==3.2.0
 pytz==2021.3
 PyYAML==6.0
 reddit-twitter-bot==0.1.0
 redis==4.1.1
-requests @ file:///home/shuxin/.cache/pypoetry/artifacts/dc/17/bf/8d9779110a13421f6181028974b24800ec70f28bf9b311411e1868b8c7/requests-2.27.1-py2.py3-none-any.whl
-requests-oauthlib @ file:///home/shuxin/.cache/pypoetry/artifacts/93/9e/43/0dbe21742ed37c1ceeb4f2533e99279ab723f0982020584d6133946ad5/requests_oauthlib-1.3.0-py2.py3-none-any.whl
+requests==2.27.1
+requests-oauthlib==1.3.0
 rich==9.13.0
-rsa @ file:///home/shuxin/.cache/pypoetry/artifacts/73/0a/c4/2ebf484214eb26f696c3bd14ac3b561ac093bd9aff1692645bd5f73ca7/rsa-4.8-py3-none-any.whl
+rsa==4.8
+setuptools==59.6.0
 six==1.15.0
 smmap==3.0.4
-social-auth-app-django @ file:///home/shuxin/.cache/pypoetry/artifacts/4d/37/0c/91524e6c26144c8da96d043b88bf85a68e8ded2ccdd038341d1a786c3d/social_auth_app_django-5.0.0-py3-none-any.whl
-social-auth-core @ file:///home/shuxin/.cache/pypoetry/artifacts/41/e0/bc/ea4c4d843c920fdf7adad07a95f8d680b763ffe4c8afa0bebf45c71c86/social_auth_core-4.1.0-py3-none-any.whl
+social-auth-app-django==5.0.0
+social-auth-core==4.1.0
 sqlparse==0.3.1
 toml==0.10.2
 tomli==1.2.1
 tomlkit==0.8.0
-twitter @ file:///home/shuxin/.cache/pypoetry/artifacts/fd/b3/a3/5e289eae2c988cf390cc78e458edb14327f89708bb108c36ffffcb4de2/twitter-1.19.3-py2.py3-none-any.whl
+twitter==1.19.3
 typing-extensions==3.10.0.2
-update-checker @ file:///home/shuxin/.cache/pypoetry/artifacts/40/38/29/2363f38343c8cd3e585e8cf1c70ee13646bd816363d06f94c0ff75c74a/update_checker-0.18.0-py3-none-any.whl
-uritemplate @ file:///home/shuxin/.cache/pypoetry/artifacts/56/89/57/c63bf42e1b1e6b55bbb8cfa907b246d870e08cf787726c3c8bb676e33d/uritemplate-4.1.1-py2.py3-none-any.whl
-url-normalize @ file:///home/shuxin/.cache/pypoetry/artifacts/10/a2/37/60662348314c2de539cf9a3d6a260cbe66d0f19d3158c3d7edf2349e74/url_normalize-1.4.3-py2.py3-none-any.whl
-urllib3 @ file:///home/shuxin/.cache/pypoetry/artifacts/d8/12/e2/1b499db5e41e88fd0f31d0e056a4dc7b53824f63f027fffc1702969c57/urllib3-1.26.7-py2.py3-none-any.whl
-vine @ file:///home/shuxin/.cache/pypoetry/artifacts/a7/a3/26/0b4cc5bb6d8828de4b6043228c8fdff0eea9acf787d1ca87cd308560a6/vine-5.0.0-py2.py3-none-any.whl
+update-checker==0.18.0
+uritemplate==4.1.1
+url-normalize==1.4.3
+urllib3==1.26.7
+vine==5.0.0
 virtualenv==20.13.0
-wcwidth @ file:///home/shuxin/.cache/pypoetry/artifacts/36/68/e2/7232f431072d5e8aeec124120b9a1d095d45da10311d271fac10982473/wcwidth-0.2.5-py2.py3-none-any.whl
+wcwidth==0.2.5
 webencodings==0.5.1
 websocket-client==0.59.0
+wheel==0.37.0
 whitenoise==5.3.0
-wrapt @ file:///home/shuxin/.cache/pypoetry/artifacts/17/7f/74/be40886ce92f11f24707c44e6cdd474893537c55ad382236a610f2f5bf/wrapt-1.13.3-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl
-yarl @ file:///home/shuxin/.cache/pypoetry/artifacts/2c/83/5a/158749cd44edaa805109a71335543407853e78baad4ccdd4fb58410453/yarl-1.7.2-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+wrapt==1.13.3
+yarl==1.7.2
 zope.event==4.4
 zope.interface==5.1.0
