@@ -329,13 +329,12 @@ class UserCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
 
 class UserMultipleChoiceField(forms.ModelMultipleChoiceField):
     def __init__(self, *args, **kwargs):
-        orderings = []
-        if kwargs.get("editors_first", False):
-            orderings.append("-user_permissions")
-            del kwargs["editors_first"]
-        orderings.append(Lower("username"))
         if "queryset" not in kwargs:
-            kwargs["queryset"] = User.objects.all().order_by(*orderings)
+            kwargs["queryset"] = (
+                User.objects.filter(is_superuser=False)
+                .all()
+                .order_by(Lower("username"))
+            )
         if "widget" not in kwargs:
             kwargs["widget"] = UserCheckboxSelectMultiple()
         super(UserMultipleChoiceField, self).__init__(*args, **kwargs)
@@ -956,10 +955,8 @@ def postprod_zip(request, id):
 class PuzzlePeopleForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PuzzlePeopleForm, self).__init__(*args, **kwargs)
-        self.fields["authors"] = UserMultipleChoiceField(required=False)
-        self.fields["editors"] = UserMultipleChoiceField(
-            required=False, editors_first=True
-        )
+        self.fields["authors"] = UserMultipleChoiceField(required=True)
+        self.fields["editors"] = UserMultipleChoiceField(required=False)
         self.fields["factcheckers"] = UserMultipleChoiceField(required=False)
         self.fields["postprodders"] = UserMultipleChoiceField(required=False)
         self.fields["spoiled"] = UserMultipleChoiceField(required=False)
@@ -1809,13 +1806,12 @@ def edit_round(request, id):
 @login_required
 def edit_answer(request, id):
     answer = get_object_or_404(PuzzleAnswer, id=id)
-    
+
     if not (
         request.user.has_perm("puzzle_editing.change_round")
         or answer.round.meta_writers.filter(id=request.user.id).exists()
     ):
         raise PermissionDenied
-
 
     if request.method == "POST":
         answer_form = AnswerForm(answer.round, request.POST, instance=answer)
