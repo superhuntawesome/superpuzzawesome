@@ -1671,9 +1671,14 @@ class AnswerForm(forms.ModelForm):
 
 
 class RoundForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(RoundForm, self).__init__(*args, **kwargs)
+        self.fields["spoiled"] = UserMultipleChoiceField(required=False)
+        self.fields["meta_writers"] = UserMultipleChoiceField(required=False)
+
     class Meta:
         model = Round
-        fields = ["name", "description"]
+        fields = ["name", "description", "spoiled", "meta_writers"]
 
 
 @login_required
