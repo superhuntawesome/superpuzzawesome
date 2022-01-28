@@ -326,6 +326,9 @@ def account(request):
 class UserCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
     template_name = "widgets/user_checkbox_select_multiple.html"
 
+    def id_for_label(self, id_, index="0"):
+        return super().id_for_label(id_, index)
+
 
 class UserMultipleChoiceField(forms.ModelMultipleChoiceField):
     def __init__(self, *args, **kwargs):
