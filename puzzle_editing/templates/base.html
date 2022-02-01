@@ -116,11 +116,10 @@
 			document.querySelectorAll('.markdown-preview-toggle').forEach((node) => {
 				const textarea = node.parentNode.nextSibling;
 				const preview = textarea.nextSibling;
-				console.log(textarea);
-				console.log(preview);
 
 				node.addEventListener('click', () => {
 					if (preview.classList.contains('hidden')) {
+						node.innerText = "Edit"
 						preview.classList.remove('hidden');
 						textarea.classList.add('hidden');
 
@@ -130,7 +129,6 @@
 							method: 'POST',
 							body: textarea.value,
 						}).then((response) => response.json()).then((json) => {
-							console.log(json);
 							if (json.success) {
 								preview.innerHTML = json.output;
 							} else {
@@ -140,6 +138,7 @@
 							preview.textContent = "Error: " + error;
 						});
 					} else {
+						node.innerText = "Preview"
 						textarea.classList.remove('hidden');
 						preview.classList.add('hidden');
 					}

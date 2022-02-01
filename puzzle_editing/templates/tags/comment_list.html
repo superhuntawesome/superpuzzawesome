@@ -55,7 +55,7 @@
 
 	<form method="post">
 		{% csrf_token %}
-		{{ comment_form }}
+		{{ comment_form.as_p }}
 		{% if allow_status_changes %}
 		<p><input type="submit" name="add_comment" value="Add Comment">
 		or
