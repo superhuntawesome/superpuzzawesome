@@ -486,14 +486,17 @@ table.classic {
 	overflow-wrap: break-word;
 }
 table.classic th, table.compact th {
-	padding: 0.5em 1em 0.5em 1em;
 	background-color: var(--secondary-bg);
 	text-align: center;
 }
 table.classic th.small {
     font-size: 85%;
 }
+table.classic th {
+	padding: 0.5em 1em 0.5em 1em;
+}
 table.compact th {
+	padding: 0.25em 0.5em 0.25em 0.5em;
 	text-align: left;
 	font-weight: normal;
 }

@@ -14,11 +14,40 @@ Rounds
 {% for round in rounds %}
 <h3>Round: {{ round.name }}</h3>
 <p>{{ round.description }}</p>
+<p>Meta Writers: {{ round.meta_writers|safeseq|join:", "}}</p>
+
+<table class="compact">
+	<tbody>
+		<tr>
+			<th># of Answers Total</th>
+			<td>{{ round.num_answers }}</td>
+		</tr>
+		<tr>
+			<th># of Answers Claimed</th>
+			<td>{{ round.num_claimed }}</td>
+		</tr>
+		<tr>
+			<th># of Answers in Test Solve</th>
+			<td>{{ round.num_test_solving }}</td>
+		</tr>
+		<tr>
+		<th># of Answers Done but w/o Solutions</th>
+			<td>{{ round.num_need_solution }}</td>
+		</tr>
+		<th># of Answers Done</th>
+			<td>{{ round.num_done }}</td>
+		</tr>
+	</tbody>
+</table>
 <p>
 	{% if round.can_edit %}
 	<a href="{% url 'edit_round' round.id %}">Edit/delete round</a> |
 	{% endif %}
+	{% if round.can_view %}
 	<a href="{% url 'view_round' round.id %}">View round</a>
+	{% else %}
+	<i>You are not spoiled for this round.</i>
+	{% endif %}
 </p>
 <hr>
 

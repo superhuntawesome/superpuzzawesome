@@ -113,11 +113,7 @@ Rounds
 
 {% else %}
 
-Description and {{ round.answers|length }} answer{{ round.answers|length|pluralize }} not shown because you're not spoiled.
-<form method="post">
-    {% csrf_token %}
-    <button type="submit" name="spoil_on" value="{{ id }}">Spoil me</button>
-</form>
+Description and {{ round.answers|length }} answer{{ round.answers|length|pluralize }} not shown because you're not spoiled. Please reach out to meta writers ({{ meta_writers|safeseq|join:", "}}) if you should be spoiled.
 {% endif %}
 
 {% endblock %}

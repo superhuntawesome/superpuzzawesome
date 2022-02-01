@@ -412,7 +412,7 @@ def authored(request):
 
 
 @login_required
-def all(request):
+def all_puzzles(request):
     puzzles = Puzzle.objects.all()
     return render(request, "all.html", {"puzzles": puzzles})
 
@@ -1701,20 +1701,58 @@ def rounds(request):
 
         return redirect(urls.reverse("rounds"))
 
-    has_change_round = request.user.has_perm("puzzle_editing.change_round")
+    def get_round_info(round):
+        # number of answers
+        answers = round.answers.all()
+        claimed = [ans for ans in answers if ans.puzzles.exists()]
+        test_solving = [
+            ans
+            for ans in claimed
+            if all(
+                [puzzle.status == status.TESTSOLVING for puzzle in ans.puzzles.all()]
+            )
+        ]
+        need_solution = [
+            ans
+            for ans in claimed
+            if all(
+                [puzzle.status == status.NEEDS_SOLUTION for puzzle in ans.puzzles.all()]
+            )
+        ]
+        done = [
+            ans
+            for ans in claimed
+            if all([puzzle.status == status.DONE for puzzle in ans.puzzles.all()])
+        ]
+
+        # permissions info
+        meta_writers = round.meta_writers.all()
+        can_edit = (
+            request.user.has_perm("puzzle_editing.change_round") or user in meta_writers
+        )
+        can_view = can_edit or round.spoiled.filter(id=user.id).exists()
+        return {
+            "num_answers": len(answers),
+            "num_claimed": len(claimed),
+            "num_test_solving": len(test_solving),
+            "num_need_solution": len(need_solution),
+            "num_done": len(done),
+            "meta_writers": [user.profile.display_name for user in meta_writers],
+            "can_edit": can_edit,
+            "can_view": can_view,
+        }
+
     rounds = [
         {
             "id": round.id,
             "name": round.name,
             "description": round.description,
-            "spoiled": round.spoiled.filter(id=user.id).exists(),
-            "can_edit": has_change_round
-            or round.meta_writers.filter(id=user.id).exists(),
+            **get_round_info(round),
         }
-        for round in Round.objects.all()
+        for round in Round.objects.prefetch_related(
+            "answers", "answers__puzzles", "spoiled", "meta_writers"
+        ).all()
     ]
-
-    rounds = [r for r in rounds if r["spoiled"] or r["can_edit"]]
 
     return render(
         request,
@@ -1729,15 +1767,12 @@ def rounds(request):
 
 @login_required
 def view_round(request, id):
-    round = get_object_or_404(Round, id=id)
+    round = get_object_or_404(Round.objects.prefetch_related("meta_writers"), id=id)
     can_edit = round.meta_writers.filter(
         id=request.user.id
     ).exists() or request.user.has_perm("puzzle_editing.change_round")
 
     if request.method == "POST":
-        if "spoil_on" in request.POST:
-            get_object_or_404(Round, id=id).spoiled.add(user)
-
         if not can_edit:
             raise PermissionDenied
 
@@ -1771,6 +1806,9 @@ def view_round(request, id):
             "spoiled": can_edit or round.spoiled.filter(id=request.user.id).exists(),
             "answers": answers,
             "form": AnswerForm(round),
+            "meta_writers": [
+                user.profile.display_name for user in round.meta_writers.all()
+            ],
         },
     )
 

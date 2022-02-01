@@ -51,7 +51,7 @@ urlpatterns = [
     ),
     path("register", views.register, name="register"),
     path("authored", views.authored, name="authored"),
-    path("all", views.all, name="all"),
+    path("all", views.all_puzzles, name="all"),
     path("random_answers", views.random_answers, name="random_answers"),
     path("puzzle/<int:id>", views.puzzle, name="puzzle"),
     path("puzzle/<int:id>/edit", views.puzzle_edit, name="puzzle_edit"),
