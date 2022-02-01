@@ -1751,7 +1751,9 @@ def rounds(request):
         }
         for round in Round.objects.prefetch_related(
             "answers", "answers__puzzles", "spoiled", "meta_writers"
-        ).all()
+        )
+        .order_by("name")
+        .all()
     ]
 
     return render(
