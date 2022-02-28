@@ -7,8 +7,6 @@ Rounds
 <h1>{{ name }}</h1>
 
 
-{% if spoiled %}
-
 <h2> Current Answers </h2>
 
 
@@ -32,21 +30,24 @@ Rounds
             {% if answer.puzzles %}
             {% for puzzle in answer.puzzles %}
             <tr>
-                {% if forloop.first and can_edit %}
-                <td rowspan="{{ answer.puzzles|length }}">
-                    <a href="{% url 'edit_answer' answer.id %}">edit</a>
-                </td>
-                <td rowspan="{{ answer.puzzles|length }}">
-                    <form method="post">
-                        {% csrf_token %}
-                        <button type="submit" name="delete_answer" value="{{ answer.id }}" class="delete-answer-button">
-                            Delete
-                        </button>
-                    </form>
-                </td>
-                <td rowspan="{{ answer.puzzles|length }}">
-                    <a class="spoiler" title="Click to reveal" onclick="this.classList.remove('spoiler');" href="#">{{ answer.answer }}</a>
-                </td>
+                {% if forloop.first %}
+                    {% if can_edit %}
+                    <td rowspan="{{ answer.puzzles|length }}">
+                        <a href="{% url 'edit_answer' answer.id %}">edit</a>
+                    </td>
+                    <td rowspan="{{ answer.puzzles|length }}">
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit" name="delete_answer" value="{{ answer.id }}" class="delete-answer-button">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                    {% endif %}
+
+                    <td rowspan="{{ answer.puzzles|length }}">
+                        <a class="spoiler" title="Click to reveal" onclick="this.classList.remove('spoiler');" href="#">{{ answer.answer }}</a>
+                    </td>
                {% endif %}
 
                 <td>
@@ -74,7 +75,6 @@ Rounds
             {% endfor %}
             {% else %}
             <tr>
-
                 {% if can_edit %}
                 <td>
                     <a href="{% url 'edit_answer' answer.id %}">edit</a>
@@ -90,9 +90,13 @@ Rounds
                 {% endif %}
 
                 <td><a class="spoiler" title="Click to reveal" onclick="this.classList.remove('spoiler');" href="#">{{ answer.answer }}</a></td>
-                <td colspan="2" class="empty">(no puzzle assigned)</td>
+                <td colspan="3" class="empty">(no puzzle assigned)</td>
                 <td class="small-md">
-                    {% if answer.notes %}{{ answer.notes|markdown }}{% endif %}
+                    {% if answer.notes %}
+                    <div class="spoiler" title="Click to reveal" onclick="this.classList.remove('spoiler');" href="#">
+                        {{ answer.notes|markdown }}
+                    </div>
+                    {% endif %}
                 </td>
             {% endif %}
         {% endfor %}
@@ -116,10 +120,5 @@ Rounds
     {% endif %}
 
 </div>
-
-{% else %}
-
-Description and {{ round.answers|length }} answer{{ round.answers|length|pluralize }} not shown because you're not spoiled. Please reach out to meta writers ({{ meta_writers|safeseq|join:", "}}) if you should be spoiled.
-{% endif %}
 
 {% endblock %}

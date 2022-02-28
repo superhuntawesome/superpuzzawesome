@@ -43,11 +43,7 @@ Rounds
 	{% if round.can_edit %}
 	<a href="{% url 'edit_round' round.id %}">Edit/delete round</a> |
 	{% endif %}
-	{% if round.can_view %}
 	<a href="{% url 'view_round' round.id %}">View round</a>
-	{% else %}
-	<i>You are not spoiled for this round.</i>
-	{% endif %}
 </p>
 <hr>
 

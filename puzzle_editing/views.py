@@ -1730,7 +1730,6 @@ def rounds(request):
         can_edit = (
             request.user.has_perm("puzzle_editing.change_round") or user in meta_writers
         )
-        can_view = can_edit or round.spoiled.filter(id=user.id).exists()
         return {
             "num_answers": len(answers),
             "num_claimed": len(claimed),
@@ -1739,7 +1738,6 @@ def rounds(request):
             "num_done": len(done),
             "meta_writers": [user.profile.display_name for user in meta_writers],
             "can_edit": can_edit,
-            "can_view": can_view,
         }
 
     rounds = [
@@ -1769,10 +1767,14 @@ def rounds(request):
 
 @login_required
 def view_round(request, id):
-    round = get_object_or_404(Round.objects.prefetch_related("meta_writers"), id=id)
+    round = get_object_or_404(
+        Round.objects.prefetch_related("meta_writers", "answers", "answers__puzzles"),
+        id=id,
+    )
     can_edit = round.meta_writers.filter(
         id=request.user.id
     ).exists() or request.user.has_perm("puzzle_editing.change_round")
+    spoiled = can_edit or round.spoiled.filter(id=request.user.id).exists()
 
     if request.method == "POST":
         if not can_edit:
@@ -1790,9 +1792,9 @@ def view_round(request, id):
 
     answers = [
         {
-            "answer": answer.answer,
+            "answer": answer.answer if spoiled else "",
             "id": answer.id,
-            "notes": answer.notes,
+            "notes": answer.notes if spoiled else "",
             "puzzles": answer.puzzles.all(),
         }
         for answer in round.answers.all()
@@ -1805,7 +1807,6 @@ def view_round(request, id):
             "name": round.name,
             "id": round.id,
             "can_edit": can_edit,
-            "spoiled": can_edit or round.spoiled.filter(id=request.user.id).exists(),
             "answers": answers,
             "form": AnswerForm(round),
             "meta_writers": [
