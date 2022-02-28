@@ -24,6 +24,7 @@ Rounds
             {% endif %}
             <th>Answer</th>
             <th>Puzzle</th>
+            <th>Authors</th>
             <th>Status</th>
             <th>Notes</th>
         </tr>
@@ -43,11 +44,10 @@ Rounds
                         </button>
                     </form>
                 </td>
-                {% endif %}
-
                 <td rowspan="{{ answer.puzzles|length }}">
                     <a class="spoiler" title="Click to reveal" onclick="this.classList.remove('spoiler');" href="#">{{ answer.answer }}</a>
                 </td>
+               {% endif %}
 
                 <td>
                     <a href="{% url 'puzzle' puzzle.id %}">
@@ -56,12 +56,18 @@ Rounds
                     </a>
                 </td>
                 <td>
-                    <span class="assignment-spoiler">{{ puzzle.get_status_display }}</span>
-                    <span class="assignment-unspoiler">(hidden)</span>
+                    {{ puzzle.get_authors }}
+                </td>
+                <td>
+                    {{ puzzle.get_status_display }}
                 </td>
                 {% if forloop.first %}
                 <td rowspan="{{ answer.puzzles|length }}" class="small-md">
-                    {% if answer.notes %}{{ answer.notes|markdown }}{% endif %}
+                    {% if answer.notes %}
+                    <div class="spoiler" title="Click to reveal" onclick="this.classList.remove('spoiler');" href="#">
+                        {{ answer.notes|markdown }}
+                    </div>
+                    {% endif %}
                 </td>
                 {% endif %}
             </tr>

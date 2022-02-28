@@ -296,6 +296,9 @@ class Puzzle(models.Model):
     def has_answer(self):
         return self.answers.count() > 0
 
+    def get_authors(self):
+        return UserProfile.html_user_list_of(self.authors.all(), True)
+
 
 @receiver(pre_save, sender=Puzzle)
 def set_status_mtime(sender, instance, **kwargs):

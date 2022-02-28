@@ -705,9 +705,10 @@ blockquote > p:last-child {
 	display: block;
 }
 
-a.spoiler {
+a.spoiler, div.spoiler {
 	background: #333333;
 	border-radius: 0.2em;
+	cursor: pointer;
 }
 
 .hide-assignments:checked ~ div > table .assignment-spoiler {
