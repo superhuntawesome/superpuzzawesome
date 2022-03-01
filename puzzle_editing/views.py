@@ -1242,7 +1242,7 @@ def testsolve_main(request):
     sessions = get_sessions_with_joined_and_current(request.user)
     current_sessions = sessions.filter(joined=True, current=True)
     past_sessions = sessions.filter(joined=True, current=False)
-    joinable_sessions = sessions.filter(joined=False, joinable=True)
+    joinable_sessions = sessions.filter(joined=False, joinable=True, is_done=False)
 
     testsolvable_puzzles = (
         Puzzle.objects.filter(status=status.TESTSOLVING)
